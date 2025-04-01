@@ -1,6 +1,6 @@
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
-import Login from './Login';
+import Login from '../pages/Login';
 
 export default function Navbar() {
     return (
@@ -25,7 +25,9 @@ export default function Navbar() {
                     </Link>
                 </nav>
             </div>
-            <Login />
+            <Link to="/login" className="z-1">
+                <Login />
+            </Link>
         </div>
     );
 }
