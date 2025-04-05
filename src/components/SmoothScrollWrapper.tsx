@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
+import './SmoothScrollWrapper.css';
 
 export default function SmoothScrollWrapper({
     children

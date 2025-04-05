@@ -22,7 +22,7 @@ function App() {
                 <dl>
                     {dogs.map((dog, index) => (
                         // Använd hundrasens namn som nyckel istället för index
-                        <React.Fragment key={dog.index}>
+                        <React.Fragment key={dog}>
                             <dt>{index}</dt>
                             <dt>{dog}</dt>
                         </React.Fragment>

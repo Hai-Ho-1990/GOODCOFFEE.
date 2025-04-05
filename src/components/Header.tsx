@@ -1,26 +1,46 @@
 // import { gsap } from 'gsap';
-// import { useEffect } from 'react';
-// import SplitType from 'split-type';
+// import { useEffect, useRef } from 'react';
+// import ScrollTrigger from 'gsap/ScrollTrigger';
+// gsap.registerPlugin(ScrollTrigger);
+
 import Hero from './Hero';
 import Navbar from './Navbar';
 function Header() {
+    // const heroRef = useRef(null);
+
     // useEffect(() => {
-    //     const splitText = new SplitType('.hisui-text', { types: 'chars' });
+    //     if (heroRef.current) {
+    //         gsap.fromTo(
+    //             heroRef.current,
+    //             { y: 50 },
+    //             {
+    //                 y: 80,
 
-    //     gsap.from(splitText.chars, {
-    //         y: 500,
-    //         stagger: 0.05,
-    //         ease: 'power3.out',
-    //         duration: 1
-    //     });
+    //                 ease: 'power1.out',
+    //                 scrollTrigger: {
+    //                     trigger: heroRef.current,
+    //                     start: 'top 0%',
+    //                     end: 'top 5%',
+    //                     markers: true,
+    //                     scrub: 1
+    //                 }
+    //             }
+    //         );
+    //     }
     // }, []);
-
     return (
         <>
             <Navbar />
             <Hero />
-            <div className="overflow-hidden absolute top-0 left-0 w-full h-[100vh] flex items-center justify-center">
-                <h1 className=" hisui-text text-[7rem] text-[#d4a010] font-extrabold leading-25 w-[70%]">
+            <div
+                // ref={heroRef}
+                className="overflow-hidden absolute top-0 left-0 w-full h-[100vh] flex items-center justify-center"
+            >
+                <h1
+                    className=" hisui-text text-[7rem] text-[#d4a010] font-extrabold leading-25 w-[55%]"
+                    data-scroll
+                    data-scroll-speed="3"
+                >
                     Full production services based in Paris
                 </h1>
             </div>

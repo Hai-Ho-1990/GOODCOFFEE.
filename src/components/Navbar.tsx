@@ -1,6 +1,5 @@
 import Logo from './Logo';
 import { Link } from 'react-router-dom';
-import Login from '../pages/Login';
 
 export default function Navbar() {
     return (
@@ -26,7 +25,7 @@ export default function Navbar() {
                 </nav>
             </div>
             <Link to="/login" className="z-1">
-                <Login />
+                Login
             </Link>
         </div>
     );

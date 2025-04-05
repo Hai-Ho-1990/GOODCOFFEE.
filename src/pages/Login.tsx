@@ -1,9 +1,7 @@
-function Login() {
-    return (
-        <div className="z-1">
-            <button>Login</button>
-        </div>
-    );
-}
+import Button from '../components/Button';
 
-export default Login;
+const Funktion = () => {
+    return <Button />;
+};
+
+export default Funktion;
