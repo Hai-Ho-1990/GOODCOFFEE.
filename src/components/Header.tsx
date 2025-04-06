@@ -41,7 +41,7 @@ function Header() {
                     data-scroll
                     data-scroll-speed="3"
                 >
-                    Full production services based in Paris
+                    FULL PRODUCTION SERVICES BASED IN PARIS
                 </h1>
             </div>
         </>
