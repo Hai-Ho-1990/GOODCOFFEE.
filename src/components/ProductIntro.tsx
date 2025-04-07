@@ -7,7 +7,7 @@ import {
 
 function ProductIntro() {
     return (
-        <section className="bg-[#D3D8E2] h-[100vh] flex justify-between">
+        <section className="bg-[#D0BEAA] h-[100vh] flex justify-between">
             <div className="w-[50%] ">
                 <h1 className="text-[black] text-left ml-[5vw] mt-[3vw]">
                     . WHO WE ARE

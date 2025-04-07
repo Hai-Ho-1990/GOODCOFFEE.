@@ -49,8 +49,8 @@ function CoffeeBeansMenu() {
     }, [isHovered]);
 
     return (
-        <section className="h-[100vh]">
-            <h1 className="text-amber-400 text-left ml-[5vw] ">
+        <section className="h-[100vh] bg-[black]">
+            <h1 className="text-amber-400 text-left ml-[5vw] pt-[7vh]">
                 . OUR COFFEE BEANS
             </h1>
             <nav className="navbar-links flex flex-col text-left font-bold ml-[15vw] mt-[12vh] leading-[0.8] text-[8vw] ">
