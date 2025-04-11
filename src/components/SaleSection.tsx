@@ -5,42 +5,50 @@ function SaleSection() {
                 . OUR CAMPAIGNS
             </h1>
             <div className="flex justify-around pt-[3vh]">
-                <h1 className="text-[10vw] font-bold">SUMMER</h1>
-                <h1 className="text-[10vw] font-bold">SALE</h1>
+                <h1 className="text-[10vw] font-bold text-amber-400">SUMMER</h1>
+                <h1 className="text-[10vw] font-bold text-amber-400">DEAL</h1>
             </div>
-            <div className="sale-product pt-[5vh] flex justify-between">
-                <div className="arabica w-[32vw]">
-                    <img src="./exempel.png" alt="" />
-                    <div className="price flex justify-between">
-                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh]">
+            <div className="sale-product pt-[5vh] flex justify-between flex-wrap">
+                {/* <video
+                    className=" top-0 left-0  h-[62vh] w-[40vw] object-cover opacity-100"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                >
+                    <source src="./src/video/sale.mp4" type="video/mp4" />
+                </video> */}
+
+                <div className="sale-product w-[100%] flex flex-col items-center pt-[10vh] ">
+                    <div className="arabica w-[100%] pb-[7%] flex justify-around items-end">
+                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh] text-[1.5rem]">
                             .ARABICA
                         </h1>
-                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw]">
+                        <img src="./exempel.png" alt="" className="w-[40%] " />
+
+                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw] text-[1.5rem]">
                             40.00 $
                         </h1>
                     </div>
-                </div>
-                <div className="robusta w-[32vw]">
-                    <img src="./robusta.png" alt="" />
-                    <div className="price flex justify-between">
-                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh]">
+
+                    {/* <div className="robusta w-[100%] pb-[7%] flex justify-around items-end">
+                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh] text-[1.5rem]">
                             .ROBUSTA
                         </h1>
-                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw]">
+                        <img src="./robusta.png" alt="" className="w-[40%] " />
+                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw] text-[1.5rem]">
                             40.00 $
                         </h1>
                     </div>
-                </div>
-                <div className="liberica w-[32vw]">
-                    <img src="./liberica.png" alt="" />
-                    <div className="price flex justify-between">
-                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh]">
-                            .LIBERICA
+                    <div className="liberica w-[100%] pb-[7%] flex justify-around items-end">
+                        <h1 className="text-amber-400 text-left ml-[0.5vw] pt-[1vh] text-[1.5rem]">
+                            .ROBUSTA
                         </h1>
-                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw]">
+                        <img src="./liberica.png" alt="" className="w-[40%] " />
+                        <h1 className="text-amber-400 pt-[1vh] mr-[0.5vw] text-[1.5rem]">
                             40.00 $
                         </h1>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

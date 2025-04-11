@@ -48,7 +48,7 @@ function ProductIntro() {
                 muted
                 playsInline
             >
-                <source src="./209419_tiny.mp4" type="video/mp4" />
+                <source src="./src/video/209419_tiny.mp4" type="video/mp4" />
             </video>
         </section>
     );
