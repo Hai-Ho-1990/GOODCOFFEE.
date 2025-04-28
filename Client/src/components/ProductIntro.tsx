@@ -10,10 +10,10 @@ function ProductIntro() {
         <section className="bg-[#D0BEAA] h-[100vh] flex justify-between ">
             <div
                 className="w-[50%] relative bottom-[8%]"
-                data-scroll
-                data-scroll-speed="2"
+                // data-scroll
+                // data-scroll-speed="2"
             >
-                <h1 className="text-[black] text-left ml-[5vw] mt-[3vw]">
+                <h1 className="text-[black] text-left ml-[5vw] mt-[7vw]">
                     . WHO WE ARE
                 </h1>
                 <h1 className="text-[black] text-left ml-[5vw] mt-[8vw] text-[3.3vw] font-bold leading-13">
@@ -44,8 +44,13 @@ function ProductIntro() {
                     />
                 </div>
             </div>
+            <img
+                src="./test-sale1.png"
+                alt=""
+                className="top-0 left-0  h-[100vh] w-[45vw] object-cover opacity-100"
+            />
 
-            <video
+            {/* <video
                 className=" top-0 left-0  h-[100vh] w-[45vw] object-cover opacity-100"
                 autoPlay
                 loop
@@ -53,7 +58,7 @@ function ProductIntro() {
                 playsInline
             >
                 <source src="./src/video/209419_tiny.mp4" type="video/mp4" />
-            </video>
+            </video> */}
         </section>
     );
 }

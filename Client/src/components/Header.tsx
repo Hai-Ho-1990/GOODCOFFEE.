@@ -1,33 +1,6 @@
-// import { gsap } from 'gsap';
-// import { useEffect, useRef } from 'react';
-// import ScrollTrigger from 'gsap/ScrollTrigger';
-// gsap.registerPlugin(ScrollTrigger);
-
 import Hero from './Hero';
 import Navbar from './Navbar';
 function Header() {
-    // const heroRef = useRef(null);
-
-    // useEffect(() => {
-    //     if (heroRef.current) {
-    //         gsap.fromTo(
-    //             heroRef.current,
-    //             { y: 50 },
-    //             {
-    //                 y: 80,
-
-    //                 ease: 'power1.out',
-    //                 scrollTrigger: {
-    //                     trigger: heroRef.current,
-    //                     start: 'top 0%',
-    //                     end: 'top 5%',
-    //                     markers: true,
-    //                     scrub: 1
-    //                 }
-    //             }
-    //         );
-    //     }
-    // }, []);
     return (
         <>
             <div className="h-[100vh]">
