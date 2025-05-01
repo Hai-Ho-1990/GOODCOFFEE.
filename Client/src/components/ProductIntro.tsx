@@ -7,13 +7,16 @@ import {
 
 function ProductIntro() {
     return (
-        <section className="bg-[#D0BEAA] h-[100vh] flex justify-between ">
+        <section
+            data-scroll-section
+            className="bg-[#D0BEAA] min-h-screen flex justify-between"
+        >
             <div
                 className="w-[50%] relative bottom-[8%]"
                 // data-scroll
                 // data-scroll-speed="2"
             >
-                <h1 className="text-[black] text-left ml-[5vw] mt-[7vw]">
+                <h1 className="text-[black] text-left ml-[5vw] mt-[5vw]">
                     . WHO WE ARE
                 </h1>
                 <h1 className="text-[black] text-left ml-[5vw] mt-[8vw] text-[3.3vw] font-bold leading-13">
@@ -47,7 +50,7 @@ function ProductIntro() {
             <img
                 src="./test-sale1.png"
                 alt=""
-                className="top-0 left-0  h-[100vh] w-[45vw] object-cover opacity-100"
+                className="top-0 left-0  h-auto max-h-[100vh] w-[45vw] object-cover opacity-100"
             />
 
             {/* <video

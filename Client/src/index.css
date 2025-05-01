@@ -26,7 +26,7 @@ html,
     display: flex;
     place-items: center;
     width: 100vw;
-    min-height: 100%;
+    overflow: hidden;
 }
 
 .sale-banner h1 {

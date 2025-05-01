@@ -1,9 +1,8 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 
 function SaleSection() {
     return (
-        <section className=" bg-black w-full">
+        <section data-scroll-section className="min-h-screen bg-black w-full">
             <h1 className="text-amber-400 text-left ml-[5vw] pt-[7vh]">
                 . OUR CAMPAIGNS
             </h1>

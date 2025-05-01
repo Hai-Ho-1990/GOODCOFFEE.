@@ -20,9 +20,13 @@ export default function SmoothScrollWrapper({
             });
         }
 
+        const interval = setInterval(() => {
+            scrollRef.current?.update(); // Uppdaterar Locomotive Scroll
+        }, 2500);
+
         return () => {
-            scrollRef.current?.destroy(); // Rensa scroll-instansen vid unmount
-            scrollRef.current = null;
+            clearInterval(interval); // Rensa intervallet vid unmount
+            scrollRef.current?.destroy(); // Rensa Locomotive Scroll
         };
     }, []);
 

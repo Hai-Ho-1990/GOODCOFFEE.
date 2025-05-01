@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 function Header() {
     return (
         <>
-            <div className="h-[100vh]">
+            <section data-scroll-section className="h-[100vh]">
                 <Navbar />
                 <Hero />
                 <div
@@ -16,7 +16,7 @@ function Header() {
                         FULL PRODUCTION SERVICES BASED IN PARIS
                     </h1>
                 </div>
-            </div>
+            </section>
         </>
     );
 }
