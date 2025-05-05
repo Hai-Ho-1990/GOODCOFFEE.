@@ -8,7 +8,7 @@ function Hero() {
                 muted
                 playsInline
             >
-                <source src="./src/video/209424_small.mp4" type="video/mp4" />
+                <source src="./video/209424_small.mp4" type="video/mp4" />
             </video>
         </div>
     );
