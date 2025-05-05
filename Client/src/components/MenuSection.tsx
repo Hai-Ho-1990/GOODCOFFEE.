@@ -54,7 +54,7 @@ function FindUs() {
                         alt=""
                         className="top-0 left-0  h-[100%] w-[99%] object-cover opacity-100 transition duration-300 group-hover:grayscale group-hover:brightness-75"
                     />
-                    <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100  text-amber-400 font-extrabold transition text-[5rem] leading-11 ">
+                    <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100  text-amber-400 font-extrabold transition text-[7rem] leading-22 ">
                         OUR STORES
                     </button>
                 </a>

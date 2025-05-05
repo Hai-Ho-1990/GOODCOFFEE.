@@ -9,7 +9,7 @@ export default function Navbar() {
         >
             <Logo />
             <div>
-                <nav className="navbar-links flex gap-15">
+                <nav className="navbar-links flex gap-15 text-lg">
                     <Link to="/" className="z-1">
                         Home
                     </Link>
@@ -24,7 +24,7 @@ export default function Navbar() {
                     </Link>
                 </nav>
             </div>
-            <Link to="/login" className="z-1">
+            <Link to="/login" className="z-1 text-lg">
                 Login
             </Link>
         </div>

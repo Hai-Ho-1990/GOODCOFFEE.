@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import LocomotiveScroll from 'locomotive-scroll';
 import './SmoothScrollWrapper.css';
 
@@ -29,6 +30,15 @@ export default function SmoothScrollWrapper({
             scrollRef.current?.destroy(); // Rensa Locomotive Scroll
         };
     }, []);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        // Används för att smoothscroll och innehållet ska appliceras även i andra path
+        setTimeout(() => {
+            scrollRef.current?.update();
+        }, 100); // liten delay för att låta DOM uppdateras
+    }, [location.pathname]);
 
     return (
         <div ref={containerRef} data-scroll-container>

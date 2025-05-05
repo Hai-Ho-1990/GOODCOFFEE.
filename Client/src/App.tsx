@@ -6,6 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import Login from './pages/Login';
+import Logo from './components/Logo';
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 
 function App() {
@@ -14,7 +15,14 @@ function App() {
             {
                 <SmoothScrollWrapper>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    <Home /> <Logo />
+                                </>
+                            }
+                        />
                         <Route path="/about" element={<About />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/products" element={<Products />} />

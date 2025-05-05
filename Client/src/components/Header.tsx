@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 function Header() {
     return (
         <>
-            <section data-scroll-section className="h-[100vh]">
+            <section data-scroll-section className="h-[100vh] w-[100vw]">
                 <Navbar />
                 <Hero />
                 <div
