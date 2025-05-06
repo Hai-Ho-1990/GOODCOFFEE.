@@ -1,5 +1,6 @@
 import './App.css';
 // import { useReducer } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -10,6 +11,11 @@ import Logo from './components/Logo';
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 
 function App() {
+    useEffect(() => {
+        fetch('/api')
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    }, []);
     return (
         <>
             {
