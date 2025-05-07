@@ -12,10 +12,14 @@ import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 
 function App() {
     useEffect(() => {
-        fetch('/api')
+        const API_BASE = import.meta.env.VITE_API_URL || '';
+
+        fetch(`${API_BASE}/api`)
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => console.log(data))
+            .catch((err) => console.error('API error:', err));
     }, []);
+
     return (
         <>
             {
