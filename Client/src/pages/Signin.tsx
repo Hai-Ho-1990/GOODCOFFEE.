@@ -1,12 +1,14 @@
-import LoginComponent from '../components/LoginComponent';
+import SignupComponent from '../components/SigninComponent';
 
-export default function Login() {
+function Signin() {
     return (
         <section
             data-scroll-section
             className="h-[100vh] w-[100vw] flex flex-col justify-center items-center"
         >
-            <LoginComponent />
+            <SignupComponent />
         </section>
     );
 }
+
+export default Signin;
