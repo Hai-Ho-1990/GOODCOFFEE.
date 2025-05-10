@@ -1,7 +1,7 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import pool from './db.js';
-import dotenv from 'dotenv';
+
 import authRoutes from './routes/authRoutes.js';
 
 const app = express();
@@ -12,6 +12,8 @@ app.use(express.json());
 
 // Använd auth-routes
 app.use('/api', authRoutes);
+
+app.use(express.urlencoded({ extended: true }));
 
 // Standard endpoint för att testa servern
 app.get('/api', async (req: Request, res: Response) => {
