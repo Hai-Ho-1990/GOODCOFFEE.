@@ -5,7 +5,8 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc"
+        "build": "tsc",
+        "start": "ts-node index.ts"
     },
     "keywords": [],
     "author": "",
@@ -22,6 +23,8 @@
         "@types/bcrypt": "^5.0.2",
         "@types/cors": "^2.8.18",
         "@types/express": "^5.0.1",
-        "@types/pg": "^8.15.1"
+        "@types/pg": "^8.15.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.3"
     }
 }
