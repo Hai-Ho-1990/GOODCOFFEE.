@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import pool from './db';
+import pool from './db.js';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 5000;

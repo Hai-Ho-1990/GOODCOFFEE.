@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import pool from '../db';
+import pool from '../db.js';
 import bcrypt from 'bcrypt';
-import asyncHandler from '../utils/asyncHandler'; // Importera asyncHandler
+import asyncHandler from '../utils/asyncHandler.js'; // Importera asyncHandler
 
 // Hantera sign-in för användaren
 const signinUser = async (req: Request, res: Response) => {
