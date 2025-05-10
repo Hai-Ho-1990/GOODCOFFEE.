@@ -1,9 +1,8 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import pg from 'pg';
+import pool from './db';
 import dotenv from 'dotenv';
-
-dotenv.config();
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,16 +10,16 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false } // Sätt till true när deploy till Render,ssl: { rejectUnauthorized: false }
-});
+// Använd auth-routes
+app.use('/api', authRoutes);
 
-app.get('/api', async (req, res) => {
+// Standard endpoint för att testa servern
+app.get('/api', async (req: Request, res: Response) => {
     const result = await pool.query('SELECT NOW()');
     res.json(result.rows[0]);
 });
 
+// Endpoint för att hämta alla användare
 app.get('/api/users', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM users');

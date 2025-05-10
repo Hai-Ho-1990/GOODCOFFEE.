@@ -4,6 +4,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import axios from 'axios';
+
 function SigninComponent() {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     //State for username
@@ -105,11 +107,30 @@ function SigninComponent() {
         }
     };
 
+    // Hanterar submit för att skicka till backend
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(
+                'https://backend-8qj8.onrender.com/api/signin',
+                {
+                    username,
+                    password,
+                    email
+                }
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.error('Fel vid skapa konto', error);
+        }
+    };
+
     return (
         <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex">
             <div className="signup-page w-[50%] flex flex-col justify-center">
                 <h1 className="text-2xl pt-5">Sign in</h1>
-                <form action="">
+                <form onSubmit={handleSubmit}>
                     <Username
                         label="Username"
                         variant="outlined"
