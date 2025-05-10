@@ -6,6 +6,7 @@ import asyncHandler from '../utils/asyncHandler.js'; // Importera asyncHandler
 // Hantera sign-in för användaren
 const signinUser = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
+    console.log('Received body:', req.body);
 
     if (!username || !email || !password) {
         return res.status(400).send('All fields are required.');
@@ -19,8 +20,8 @@ const signinUser = async (req: Request, res: Response) => {
         );
         res.status(201).json({ message: 'User created successfully' });
     } catch (error) {
-        // Här fångas eventuella fel och skickas vidare till nästa middleware
-        throw error;
+        console.error('Fel i signinUser:', error);
+        res.status(500).json({ error: 'Serverfel vid signin' });
     }
 };
 
