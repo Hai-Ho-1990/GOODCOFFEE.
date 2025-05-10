@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "jsx": "react-jsx",
-        "strict": true,
-        "esModuleInterop": true,
+        "target": "ES2020", // Sätt rätt JavaScript-version som passar din Node.js-version
+        "module": "ESNext", // Använd ES-moduler istället för CommonJS
+        "moduleResolution": "node", // Använd Node.js-modulupplösning
+        "esModuleInterop": true, // Tillåt interoperation mellan CommonJS och ES-moduler
+        "outDir": "./dist", // Kompilerade filer sparas här
+        "allowJs": true, // Tillåt JavaScript-filer också
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "strict": true
     },
-    "include": ["Client/src"]
+    "include": ["Server/**/*.ts"], // Inkludera alla TypeScript-filer från Server-mappen
+    "exclude": ["node_modules"]
 }
