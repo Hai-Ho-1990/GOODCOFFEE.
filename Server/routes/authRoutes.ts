@@ -4,7 +4,7 @@ import signinUser from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.post('/api/users', signinUser);
+router.post('/signin', signinUser);
 router.get('/ping', (req, res) => {
     res.send('Auth route fungerar!');
 });
