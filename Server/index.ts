@@ -37,7 +37,7 @@ app.get('/api', async (req: Request, res: Response) => {
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'Client/dist')));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'Client/dist/index.html'));
 });
 
