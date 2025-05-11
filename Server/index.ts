@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import pool from './db.js';
+import path from 'path';
 
 import authRoutes from './routes/authRoutes.js';
 
@@ -31,6 +32,14 @@ app.get('/api', async (req: Request, res: Response) => {
 //         res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
 //     }
 // });
+
+// Serve frontend (React/Vite) från dist/
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'Client/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Client/dist/index.html'));
+});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
