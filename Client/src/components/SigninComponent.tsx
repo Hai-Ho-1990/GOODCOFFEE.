@@ -1,7 +1,7 @@
 import { TextField, Button, Checkbox } from '@mui/material';
 // const API_URL = import.meta.env.VITE_API_URL;
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import axios from 'axios';
@@ -12,6 +12,7 @@ function SigninComponent() {
     const [username, setUsername] = useState('');
     const [errorUsername, setErrorUsername] = useState(false);
     const [helperTextUsername, setHelperTextUsername] = useState('');
+    const navigate = useNavigate();
 
     const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -121,6 +122,7 @@ function SigninComponent() {
                     email
                 }
             );
+            navigate('/login');
             console.log(response.data);
         } catch (error) {
             console.error('Fel vid skapa konto', error);
