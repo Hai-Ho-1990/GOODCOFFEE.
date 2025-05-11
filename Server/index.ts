@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import pool from './db.js';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 
 const app = express();
@@ -15,23 +16,25 @@ app.use('/api', authRoutes);
 
 app.use(express.urlencoded({ extended: true }));
 
+// Konvertera import.meta.url till en filväg
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Servera statiska filer från dist
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// // Fallback route för alla andra rutter (SPA)
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
+
 // Standard endpoint för att testa servern
 app.get('/api', async (req: Request, res: Response) => {
     const result = await pool.query('SELECT NOW()');
     res.json(result.rows[0]);
 });
 
-// Endpoint för att hämta alla användare
-// app.get('/api/users', async (req, res) => {
-//     try {
-//         const result = await pool.query('SELECT * FROM users');
-//         res.json(result.rows);
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
-//     }
-// });
-
+app.use(express.static(path.join(path.resolve(), 'dist')));
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
