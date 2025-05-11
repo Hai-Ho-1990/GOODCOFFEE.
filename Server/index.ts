@@ -21,6 +21,11 @@ app.get('/api', async (req: Request, res: Response) => {
     res.json(result.rows[0]);
 });
 
+// Skapa /login rutt
+app.get('/login', (req, res) => {
+    res.send('Login Route');
+});
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
