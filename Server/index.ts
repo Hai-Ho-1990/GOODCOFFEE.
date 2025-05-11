@@ -2,11 +2,14 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import pool from './db.js';
 import path from 'path';
-
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +37,7 @@ app.get('/api', async (req: Request, res: Response) => {
 // });
 
 // Serve frontend (React/Vite) från dist/
-const __dirname = path.resolve();
+
 app.use(express.static(path.join(__dirname, 'Client/dist')));
 
 app.get('/*', (req, res) => {
