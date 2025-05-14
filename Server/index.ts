@@ -21,6 +21,11 @@ app.get('/api', async (req: Request, res: Response) => {
     res.json(result.rows[0]);
 });
 
+app.get('/api/users', async (req, res) => {
+    const result = await pool.query('SELECT * FROM users');
+    res.send(result.rows);
+});
+
 // Skapa /login rutt
 app.get('/login', (req, res) => {
     res.send('Login Route');

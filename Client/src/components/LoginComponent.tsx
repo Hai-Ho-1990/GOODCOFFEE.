@@ -1,23 +1,91 @@
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios, { AxiosError } from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
+import { useState } from 'react';
 
 function LoginComponent() {
+    const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorUsername, setErrorUsername] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
+    const [helperTextUsername, setHelperErrorUsername] = useState('');
+    const [helperTextPassword, setHelperTextPassword] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            await axios.post(
+                `${API_URL}/api/login`,
+                // 'https://backend-8qj8.onrender.com/api/login',
+
+                {
+                    username,
+                    password
+                }
+            );
+            // Töm fälten på lyckad inloggning
+            setUsername('');
+            setPassword('');
+
+            navigate('/');
+        } catch (err) {
+            const error = err as AxiosError;
+            if (error.response && error.response.data) {
+                const data = error.response.data as {
+                    errors: Record<string, string>;
+                    message: string;
+                    username: string;
+                    password: string;
+                };
+                if (data.errors) {
+                    if (data.errors.username) {
+                        setHelperErrorUsername(data.errors.username || ' ');
+                        setErrorUsername(true);
+                    }
+                    if (data.errors.password) {
+                        setHelperTextPassword(data.errors.password || ' ');
+                        setErrorPassword(true);
+                    }
+                } else if (data.message) {
+                    console.log(data.message);
+                }
+            } else {
+                console.error(err);
+            }
+        }
+    };
+
     return (
         <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex">
             <div className="login-page w-[50%] flex flex-col justify-center relative">
-                <h1 className="text-2xl pt-5">Login</h1>
+                <h1 className="text-2xl pt-5 pb-20">Login</h1>
                 <form
                     className="flex flex-col justify-center relative"
                     action="
                 "
+                    onSubmit={handleSubmit}
                 >
-                    <Username label="Username" variant="outlined" required />
-                    <Password
+                    <StyledTextField
+                        label="Username"
+                        variant="outlined"
+                        required
+                        error={errorUsername}
+                        helperText={helperTextUsername}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <StyledTextField
                         label="Password"
                         variant="outlined"
                         type="password"
                         required
+                        error={errorPassword}
+                        helperText={helperTextPassword}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <a href="" className="text-[14px]">
@@ -110,50 +178,9 @@ export default LoginComponent;
 
 import { styled } from '@mui/material/styles';
 
-const Username = styled(TextField)({
-    marginTop: '70px',
+const StyledTextField = styled(TextField)({
+    marginTop: '10px',
     width: '70%',
-    alignSelf: 'center',
-    marginBottom: '1rem',
-
-    // 🔹 Label-färg
-    '& label': {
-        color: 'white',
-        fontSize: '14px'
-    },
-    '& label.Mui-focused': {
-        color: 'white'
-    },
-
-    // 🔸 Input-rutan
-    '& .MuiOutlinedInput-root': {
-        backgroundColor: 'black',
-        borderRadius: '10px',
-
-        '& input': {
-            color: 'white' // textfärg i input
-        },
-        '& input::placeholder': {
-            color: 'white',
-            opacity: 1
-        },
-
-        '& fieldset': {
-            borderColor: 'grey'
-        },
-        '&:hover fieldset': {
-            borderColor: 'white'
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white'
-        }
-    }
-});
-
-const Password = styled(TextField)({
-    marginTop: '20px',
-    width: '70%',
-
     alignSelf: 'center',
     marginBottom: '1rem',
 

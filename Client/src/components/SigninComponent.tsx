@@ -1,112 +1,123 @@
 import { TextField, Button, Checkbox } from '@mui/material';
-// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import useValidateInput from './Validateinput';
 
+import axios, { AxiosError } from 'axios';
+
+//En funktion där hanterar inputsfält, validera dess värde, hantera fel och visa fel meddelande
 function SigninComponent() {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    //State for username
-    const [username, setUsername] = useState('');
-    const [errorUsername, setErrorUsername] = useState(false);
-    const [helperTextUsername, setHelperTextUsername] = useState('');
     const navigate = useNavigate();
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-    const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setUsername(value);
+    // function useValidateInput(
+    //     initialValue: string,
+    //     //en funktion som validerar fältets innehåll och returnera:
+    //     // en sträng om det är ogiltigt
+    //     // null om allt är rätt
+    //     validate: (value: string) => string | null
+    // ) {
+    //     //Skapa en "mall" som kan appliceras på alla fält
+    //     const [value, setValue] = useState(initialValue);
+    //     const [error, setError] = useState(false);
+    //     const [helperText, setHelperText] = useState('');
 
-        if (value.length < 3) {
-            setErrorUsername(true);
-            setHelperTextUsername('Username has to be atleast 3 characters');
-        } else {
-            setErrorUsername(false);
-            setHelperTextUsername('');
+    //     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //         const result = e.target.value;
+    //         setValue(result);
+    //         // Resultat av validerings funktion lagars i validationMessage
+    //         const validationMessage = validate(result);
+    //         // Om det finns error ska meddelande lagrras i textHelper
+    //         if (validationMessage) {
+    //             setError(true);
+    //             setHelperText(validationMessage);
+    //         } else {
+    //             setError(false);
+    //             setHelperText('');
+    //         }
+    //     };
+    //     // returna allt som behövs för att kontrollera
+    //     return {
+    //         value,
+    //         onChange,
+    //         error,
+    //         helperText,
+    //         setValue,
+    //         setError,
+    //         setHelperText
+    //     };
+    // }
+
+    const usernameInput = useValidateInput('', (result) => {
+        if (result.length < 3) return 'Username has to be atleast 3 characters';
+        if (result === '') return null;
+        return null;
+    });
+
+    const passwordInput = useValidateInput('', (result) => {
+        if (!passwordRegex.test(result)) {
+            return 'At least 8 characters, one uppercase letter, one number, and one special character.';
         }
-        if (value === '') {
-            setErrorUsername(false);
-            setHelperTextUsername('');
+        return null;
+    });
+
+    const repeatPasswordInput = useValidateInput('', (result) => {
+        if (result !== passwordInput.value) {
+            return 'Repeat password does not match your password.';
         }
-    };
+        return null;
+    });
 
-    // State for password
-    const [password, setPassword] = useState('');
-    const [errorPassword, setErrorPassword] = useState(false);
-    const [helperTextPassword, setHelperTextPassword] = useState('');
-
-    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setPassword(value);
-
-        if (!passwordRegex.test(value)) {
-            setErrorPassword(true);
-            setHelperTextPassword(
-                'At least 8 characters, one uppercase letter, one number, and one special character.'
-            );
-        } else {
-            setErrorPassword(false);
-            setHelperTextPassword('');
-        }
-        if (value === '') {
-            setErrorPassword(false);
-            setHelperTextPassword('');
-            return;
-        }
-    };
-
-    // State for repeat password
-    const [repeatPassword, setRepeatPassword] = useState('');
-    const [errorRepeatPassword, setErrorRepeatPassword] = useState(false);
-    const [helperTextRepeatPassword, setHelperTextRepeatPassword] =
-        useState('');
-
-    const handleChangeRepeatPassword = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        const value = e.target.value;
-        setRepeatPassword(value);
-    };
-
-    //Denna gör att sidan hinner att uppdatera password och sedan kunna jämföra med repeat password
-    // Annars hinner den inte uppdatera och leder till att man behöver skriver ett extra tecken
-    // så att setError blir false vilken är fel
-    useEffect(() => {
-        if (password !== repeatPassword) {
-            setErrorRepeatPassword(true);
-            setHelperTextRepeatPassword(
-                'Repeat password does not match your password.'
-            );
-        } else {
-            setErrorRepeatPassword(false);
-            setHelperTextRepeatPassword('');
-        }
-    }, [password, repeatPassword]);
-
-    //State för email validering
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    const [email, setEmail] = useState('');
-    const [errorEmail, setErrorEmail] = useState(false);
-    const [helperTextEmail, setHelperTextEmail] = useState('');
-
-    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setEmail(value);
-
-        if (!emailRegex.test(value)) {
-            setErrorEmail(true);
-            setHelperTextEmail('Invalid email format');
+    const emailInput = useValidateInput('', (result) => {
+        if (!emailRegex.test(result)) {
+            return 'Invalid email format';
         } else {
-            setErrorEmail(false);
-            setHelperTextEmail('');
+            return null;
         }
-        if (value === '') {
-            setErrorEmail(false);
-            setHelperTextEmail('');
+        if (result.length === 0) {
+            return null;
         }
-    };
+    });
+
+    // useEffect(() => {
+
+    //     });
+    //     //     if (password !== repeatPassword) {
+    //     //         setErrorRepeatPassword(true);
+    //     //         setHelperTextRepeatPassword(
+    //     //             'Repeat password does not match your password.'
+    //     //         );
+    //     //     } else {
+    //     //         setErrorRepeatPassword(false);
+    //     //         setHelperTextRepeatPassword('');
+    //     //     }
+    //     // }, [password, repeatPassword]);
+
+    //     //State för email validering
+
+    //     // const [email, setEmail] = useState('');
+    //     // const [errorEmail, setErrorEmail] = useState(false);
+    //     // const [helperTextEmail, setHelperTextEmail] = useState('');
+
+    //     // const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     //     const value = e.target.value;
+    //     //     setEmail(value);
+
+    //     //     if (!emailRegex.test(value)) {
+    //     //         setErrorEmail(true);
+    //     //         setHelperTextEmail('Invalid email format');
+    //     //     } else {
+    //     //         setErrorEmail(false);
+    //     //         setHelperTextEmail('');
+    //     //     }
+    //     //     if (value === '') {
+    //     //         setErrorEmail(false);
+    //     //         setHelperTextEmail('');
+    //     //     }
+    // });
 
     // Hanterar submit för att skicka till backend
     const handleSubmit = async (e: React.FormEvent) => {
@@ -114,68 +125,101 @@ function SigninComponent() {
 
         try {
             const response = await axios.post(
-                // `${API_URL}/api/signin`,
-                'https://backend-8qj8.onrender.com/api/signin',
+                `${API_URL}/api/signin`,
+                // 'https://backend-8qj8.onrender.com/api/signin',
+
                 {
-                    username,
-                    password,
-                    email
+                    username: usernameInput.value,
+                    password: passwordInput.value,
+                    email: emailInput.value
                 }
             );
             navigate('/login');
             console.log(response.data);
-        } catch (error) {
-            console.error('Fel vid skapa konto', error);
+        } catch (err) {
+            //Säg till ts att error är AxiosError-objekt med följande struktur:
+            //             //{
+            //   message: "Request failed with status code 409",
+            //   response: {
+            //     status: 409,
+            //     data: {
+            //       errors: {
+            //         email: "Tex: Email is already used"
+            //       }
+            //     }
+            //   }
+            // }
+            const error = err as AxiosError;
+            if (error.response && error.response.data) {
+                const data = error.response.data as {
+                    errors: Record<string, string>;
+                    message: string;
+                };
+                if (data.errors) {
+                    if (data.errors.username) {
+                        usernameInput.setHelperText(data.errors.username);
+                        usernameInput.setError(true);
+                    }
+                    if (data.errors.email) {
+                        emailInput.setHelperText(data.errors.email);
+                        emailInput.setError(true);
+                    }
+                } else if (data.message) {
+                    console.log(data.message);
+                }
+            } else {
+                console.error(err);
+            }
         }
     };
 
     return (
         <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex">
             <div className="signup-page w-[50%] flex flex-col justify-center">
-                <h1 className="text-2xl pt-5">Sign in</h1>
+                <h1 className="text-2xl pt-5 pb-15">Sign in</h1>
                 <form onSubmit={handleSubmit}>
-                    <Username
+                    <StyledTextField
                         label="Username"
                         variant="outlined"
                         required
                         size="small"
-                        value={username}
-                        onChange={handleChangeUsername}
-                        error={errorUsername}
-                        helperText={helperTextUsername || ' '}
+                        value={usernameInput.value}
+                        onChange={usernameInput.onChange}
+                        error={usernameInput.error}
+                        helperText={usernameInput.helperText || ' '}
                     />
-                    <Password
+                    <StyledTextField
                         label="Password"
                         variant="outlined"
                         type="password"
                         required
                         size="small"
-                        value={password}
-                        error={errorPassword}
-                        helperText={helperTextPassword || ' '}
-                        onChange={handleChangePassword}
+                        value={passwordInput.value}
+                        error={passwordInput.error}
+                        helperText={passwordInput.helperText || ' '}
+                        onChange={passwordInput.onChange}
                     />
-                    <RepeatPassword
+                    <StyledTextField
                         label="Repeat Password"
                         variant="outlined"
                         type="password"
                         required
                         size="small"
-                        onChange={handleChangeRepeatPassword}
-                        value={repeatPassword}
-                        error={errorRepeatPassword}
-                        helperText={helperTextRepeatPassword || ' '}
+                        onChange={repeatPasswordInput.onChange}
+                        value={repeatPasswordInput.value}
+                        error={repeatPasswordInput.error}
+                        helperText={repeatPasswordInput.helperText || ' '}
                     />
-                    <Email
+                    <StyledTextField
                         label="Email"
                         variant="outlined"
                         type="email"
                         required
                         size="small"
-                        value={email}
-                        error={errorEmail}
-                        helperText={helperTextEmail || ' '}
-                        onChange={handleChangeEmail}
+                        value={emailInput.value}
+                        error={emailInput.error}
+                        helperText={emailInput.helperText || ' '}
+                        onChange={emailInput.onChange}
                     />
                     <div className="text-start pl-[11%]">
                         <CustomLabel
@@ -240,167 +284,46 @@ export default SigninComponent;
 
 import { styled } from '@mui/material/styles';
 
-const Username = styled(TextField)({
-    marginTop: '40px',
-    width: '70%',
-    alignSelf: 'center',
-    marginBottom: '1rem',
-
-    // 🔹 Label-färg
-    '& label': {
-        color: 'white',
-        fontSize: '12px'
-    },
-    '& label.Mui-focused': {
-        color: 'white'
-    },
-
-    // 🔸 Input-rutan
-    '& .MuiOutlinedInput-root': {
-        backgroundColor: 'black',
-        borderRadius: '10px',
-
-        '& input': {
-            color: 'white' // textfärg i input
-        },
-        '& input::placeholder': {
-            color: 'white',
-            opacity: 1
-        },
-
-        '& fieldset': {
-            borderColor: 'grey'
-        },
-        '&:hover fieldset': {
-            borderColor: 'white'
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white'
-        }
-    }
-});
-
-const Password = styled(TextField)({
-    width: '70%',
-
-    alignSelf: 'center',
-    marginBottom: '1rem',
-
-    // 🔹 Label-färg
-    '& label': {
-        color: 'white',
-        fontSize: '12px'
-    },
-    '& label.Mui-focused': {
-        color: 'white'
-    },
-
-    // 🔸 Input-rutan
-    '& .MuiOutlinedInput-root': {
-        backgroundColor: 'black',
-        borderRadius: '10px',
-
-        '& input': {
-            color: 'white' // textfärg i input
-        },
-        '& input::placeholder': {
-            color: 'white',
-            opacity: 1
-        },
-
-        '& fieldset': {
-            borderColor: 'grey'
-        },
-        '&:hover fieldset': {
-            borderColor: 'white'
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white'
-        }
-    }
-});
-
-const RepeatPassword = styled(TextField)({
-    width: '70%',
-
-    alignSelf: 'center',
-    marginBottom: '1rem',
-
-    // 🔹 Label-färg
-    '& label': {
-        color: 'white',
-        fontSize: '12px'
-    },
-    '& label.Mui-focused': {
-        color: 'white'
-    },
-
-    // 🔸 Input-rutan
-    '& .MuiOutlinedInput-root': {
-        backgroundColor: 'black',
-        borderRadius: '10px',
-
-        '& input': {
-            color: 'white' // textfärg i input
-        },
-        '& input::placeholder': {
-            color: 'white',
-            opacity: 1
-        },
-
-        '& fieldset': {
-            borderColor: 'grey'
-        },
-        '&:hover fieldset': {
-            borderColor: 'white'
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white'
-        }
-    }
-});
-
-const Email = styled(TextField)({
-    width: '70%',
-
-    alignSelf: 'center',
-    marginBottom: '1rem',
-
-    // 🔹 Label-färg
-    '& label': {
-        color: 'white',
-        fontSize: '12px'
-    },
-    '& label.Mui-focused': {
-        color: 'white'
-    },
-
-    // 🔸 Input-rutan
-    '& .MuiOutlinedInput-root': {
-        backgroundColor: 'black',
-        borderRadius: '10px',
-
-        '& input': {
-            color: 'white' // textfärg i input
-        },
-        '& input::placeholder': {
-            color: 'white',
-            opacity: 1
-        },
-
-        '& fieldset': {
-            borderColor: 'grey'
-        },
-        '&:hover fieldset': {
-            borderColor: 'white'
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white'
-        }
-    }
-});
-
 // Checkbox styling
+
+const StyledTextField = styled(TextField)({
+    width: '70%',
+    alignSelf: 'center',
+    marginBottom: '1rem',
+
+    // 🔹 Label-färg
+    '& label': {
+        color: 'white',
+        fontSize: '12px'
+    },
+    '& label.Mui-focused': {
+        color: 'white'
+    },
+
+    // 🔸 Input-rutan
+    '& .MuiOutlinedInput-root': {
+        backgroundColor: 'black',
+        borderRadius: '10px',
+
+        '& input': {
+            color: 'white' // textfärg i input
+        },
+        '& input::placeholder': {
+            color: 'white',
+            opacity: 1
+        },
+
+        '& fieldset': {
+            borderColor: 'grey'
+        },
+        '&:hover fieldset': {
+            borderColor: 'white'
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'white'
+        }
+    }
+});
 
 const CustomCheckbox = styled(Checkbox)({
     color: 'white',
