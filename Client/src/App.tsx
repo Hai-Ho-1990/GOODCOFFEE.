@@ -9,6 +9,7 @@ import Products from './pages/Products';
 import Login from './pages/Login';
 import Logo from './components/Logo';
 import Signin from './pages/Signin';
+import Profile from './pages/Profile';
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                         <Route path="/products" element={<Products />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signin" element={<Signin />} />
+                        <Route path="/profile" element={<Profile />} />
                     </Routes>
                 </SmoothScrollWrapper>
             }

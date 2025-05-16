@@ -1,7 +1,5 @@
-import { TextField } from '@mui/material';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { TextField, Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 const API_URL = import.meta.env.VITE_API_URL;
 import { useState } from 'react';
@@ -19,7 +17,7 @@ function LoginComponent() {
         e.preventDefault();
 
         try {
-            await axios.post(
+            const response = await axios.post(
                 `${API_URL}/api/login`,
                 // 'https://backend-8qj8.onrender.com/api/login',
 
@@ -28,10 +26,19 @@ function LoginComponent() {
                     password
                 }
             );
+
             // Töm fälten på lyckad inloggning
             setUsername('');
             setPassword('');
-
+            // Spara token vid lyckad inloggning
+            //Dessa "info" skicades från jwt-token i loginController.ts
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('id', response.data.id);
+            localStorage.setItem('username', response.data.username);
+            console.log(response.data.token);
+            console.log(response.data.username);
+            console.log(response.data);
+            // Och navigera till homepage
             navigate('/');
         } catch (err) {
             const error = err as AxiosError;

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import pool from '../db.js';
 import bcrypt from 'bcrypt';
 import asyncHandler from '../utils/asyncHandler.js'; // Importera asyncHandler
+import jwt from 'jsonwebtoken';
 
 const loginUser = async (req: Request, res: Response) => {
     const { username, password } = req.body;
@@ -38,8 +39,25 @@ const loginUser = async (req: Request, res: Response) => {
             errors
         });
     }
+
+    const userId = user.id || user.user_id;
+    // skapa en JWT-token som innehåller användarens ID och username, så att kunna skickas till och använda av senare frontend för autentisering
+    // Token fungerar som ett ID-kort. Den innehåller vem du är och bevisar att du är inloggad.
+    const token = jwt.sign(
+        {
+            id: userId,
+            username: user.username
+        },
+        'minhemlighetcode',
+        { expiresIn: '1y' }
+    );
+
+    //här definierar vad som ska skapas som response.data i frontend
     return res.status(200).json({
-        message: ' Login successfully'
+        message: ' Login successfully',
+        id: userId,
+        token: token,
+        username: user.username
     });
 };
 
