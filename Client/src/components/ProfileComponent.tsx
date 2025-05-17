@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import PersonalInfo from './my profile/PersonalInfo';
+import OrderComponent from './my profile/OrderComponent';
 import React from 'react';
 
 //
@@ -38,7 +39,11 @@ function ProfileComponent() {
             case 0:
                 return <PersonalInfo />;
             case 1:
-                return <div>Order</div>;
+                return (
+                    <div>
+                        <OrderComponent />
+                    </div>
+                );
             case 2:
                 return <div>History</div>;
             case 3:
