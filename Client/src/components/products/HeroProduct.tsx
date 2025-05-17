@@ -8,7 +8,7 @@ function HeroProduct() {
                 muted
                 playsInline
             >
-                <source src="../video/product.mp4" type="video/mp4" />
+                <source src="../video/summer_compressed.mp4" type="video/mp4" />
             </video>
         </div>
     );
