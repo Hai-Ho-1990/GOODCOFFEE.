@@ -6,20 +6,6 @@ function FindUs() {
                 className=" h-[100vh] flex justify-between mt-[100px]"
             >
                 <div className="w-[50%]  flex flex-wrap gap-2">
-                    {/* <h1 className="text-[black] text-left ml-[5vw] mt-[6vw]">
-                        . OUR JOURNAL
-                    </h1>
-
-                    <h3 className="text-[black] text-center ml-[5vw] mt-[7vw] text-[1.5vw] leading-3">
-                        GOOD COFFEE GOOD PEOPLE
-                    </h3>
-
-                    <h3 className="text-[black] text-center ml-[5vw] mt-[3vw] text-[1vw] leading-10">
-                        Drottninggatan 68, Stockholm
-                    </h3>
-                    <h3 className="text-[black] text-center ml-[5vw] mt-[1vw] text-[1vw] leading-5">
-                        Mall Of Scandinavian, Solna
-                    </h3> */}
                     <a href="" className="w-[49%] h-[50%] group relative">
                         <img
                             src="./menu1.png"

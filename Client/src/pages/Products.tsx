@@ -1,11 +1,17 @@
-import Navbar from '../components/Navbar';
 import ProductsComponent from '../components/products/ProductsComponent';
+import Footer from '../components/Footer';
+import ProductHeader from '../components/products/ProductHeader';
+import NewsletterComponent from '../components/products/NewsletterComponent';
+import RecensionComponent from '../components/products/RecensionComponent';
 
 export default function Products() {
     return (
-        <section data-scroll-section className="h-[500vh] w-[100vw]">
-            <Navbar />
+        <>
+            <ProductHeader />
             <ProductsComponent />
-        </section>
+            <RecensionComponent />
+            <NewsletterComponent />
+            <Footer />
+        </>
     );
 }

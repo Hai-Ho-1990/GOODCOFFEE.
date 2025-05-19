@@ -22,15 +22,6 @@ function SaleSection() {
 
             <div className="sale-product h-[full]  flex  flex-wrap justify-center">
                 <div className="sale-product w-[100%]  flex mt-[7rem]">
-                    {/* <video
-                        className=" top-0 left-0  h-[53vh] w-[49.5%]  object-cover opacity-100"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    >
-                        <source src="./src/video/summer.mp4" type="video/mp4" />
-                    </video> */}
                     <div className=" w-[49.5%] overflow-hidden flex flex-col">
                         <img
                             src="./liberica-nobg.png"
@@ -77,13 +68,6 @@ function SaleSection() {
                         </h2>
                         <h2 className="text-amber-400">6.99$</h2>
                     </div>
-                    {/* <div className="w-[49.5%] overflow-hidden ">
-                        <img
-                            src="./freeship.png"
-                            alt=""
-                            className="w-[100%] h-[100%] object-cover hover:scale-[1.25] transform transition-transform duration-500 ease-in-out "
-                        />
-                    </div> */}
                 </div>
                 <div className="mt-[100px]">
                     <Button
