@@ -1,130 +1,130 @@
-import { useState } from 'react';
-import Rating from '@mui/material/Rating';
-import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
+// import Rating from '@mui/material/Rating';
+// import Button from '@mui/material/Button';
+const API_URL = import.meta.env.VITE_API_URL;
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import { Button, Rating } from '@mui/material';
+
+interface Product {
+    name: string;
+    discount_price: number;
+    main_image: string;
+    description: string;
+}
 
 function ProductsComponent() {
-    const [activeCategory, SetActiveCategory] = useState('ALL');
+    const [products, setProducts] = useState<Product[]>([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const activeCategory = searchParams.get('category') || 'ALL';
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                let url = `${API_URL}/api/product`;
+
+                if (activeCategory !== 'ALL') {
+                    url += `?category=${activeCategory}`;
+                }
+                const response = await axios.get(url);
+
+                console.log(response.data);
+                setProducts(response.data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchProduct();
+    }, [activeCategory]);
+
+    const renderAllProducts = () => {
+        return products.map((product, index) => (
+            <div key={index} className="w-[25%] mt-[7rem]">
+                <img
+                    src={`${API_URL}/uploads/${product.main_image}`}
+                    alt=""
+                    className="w-[100%] h-[100%] scale-[1.2] object-cover hover:scale-[1.35] transform transition-transform duration-500 ease-in-out"
+                />
+                <h2 className="text-black mt-[7%] text-[1.2rem] font-bold">
+                    {product.name.toUpperCase()}
+                </h2>
+                <h2 className="text-black text-xl">
+                    {product.discount_price}$
+                </h2>
+            </div>
+        ));
+    };
+
+    const renderSingleProduct = (product: Product, index: number) => (
+        <div
+            key={index}
+            className=" w-[100%] overflow-hidden flex flex-row items-center"
+        >
+            <img
+                src={`${API_URL}/uploads/${product.main_image}`}
+                alt=""
+                className="w-[50%] h-[50%%] object-cover "
+            />
+            <div className="flex flex-col items-center">
+                <h1 className="text-black mt-5 text-[2.5rem] font-bold">
+                    {product.name.toUpperCase()}
+                </h1>
+                <Rating
+                    name="half-rating"
+                    defaultValue={4.5}
+                    precision={0.5}
+                    size="large"
+                />
+                <p className="w-[60%] pt-5 text-black">{product.description}</p>
+
+                <div className="mt-[50px] ">
+                    <Button
+                        variant="contained"
+                        size="large"
+                        color="success"
+                        sx={{
+                            backgroundColor: '#ffb900',
+                            color: 'black',
+                            padding: '12px 24px',
+                            fontSize: '18px',
+                            fontWeight: 'bold',
+                            width: '10vw',
+
+                            '&:hover': {
+                                backgroundColor: 'orange'
+                            }
+                        }}
+                    >
+                        {product.discount_price}$
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
 
     const renderContent = () => {
-        switch (activeCategory) {
-            case 'SMOOTHER':
-                return <div></div>;
-            case 'SWEET':
-                return <div></div>;
-            case 'UNIQUE':
-                return (
-                    <>
-                        <div className=" w-[100%] overflow-hidden flex flex-row items-center">
-                            <img
-                                src="./excelsa-nobg.png"
-                                alt=""
-                                className="w-[45%] h-[50%%] object-cover scale-[1.2] transform transition-transform duration-500 ease-in-out"
-                            />
-                            <div className="flex flex-col items-center">
-                                <h1 className="text-black mt-5 text-[2.5rem] font-bold">
-                                    EXCELSA
-                                </h1>
-                                <Rating
-                                    name="half-rating"
-                                    defaultValue={4.5}
-                                    precision={0.5}
-                                    size="large"
-                                />
-                                <p className="w-[60%] pt-5 text-black">
-                                    Excelsa is a rare and distinctive coffee
-                                    variety, part of the Liberica family. Grown
-                                    mainly in Southeast Asia, it’s known for its
-                                    complex flavor profile—fruity, tart, and
-                                    often with dark berry or spiced notes.
-                                    Excelsa adds depth and uniqueness to blends,
-                                    making it a favorite among adventurous
-                                    coffee lovers.
-                                </p>
-
-                                <div className="mt-[50px] ">
-                                    <Button
-                                        variant="contained"
-                                        size="large"
-                                        color="success"
-                                        sx={{
-                                            backgroundColor: '#ffb900',
-                                            color: 'black',
-                                            padding: '12px 24px',
-                                            fontSize: '18px',
-                                            fontWeight: 'bold',
-                                            width: '10vw',
-
-                                            '&:hover': {
-                                                backgroundColor: 'orange'
-                                            }
-                                        }}
-                                    >
-                                        6.99$
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                );
-            case 'BITTER':
-                return <div></div>;
-            case 'ALL':
-            default:
-                return (
-                    <>
-                        <div className=" w-[49.5%] overflow-hidden flex flex-col">
-                            <img
-                                src="./liberica-nobg.png"
-                                alt=""
-                                className="w-[100%] h-[100%] object-cover hover:scale-[1.25] transform transition-transform duration-500 ease-in-out"
-                            />
-                            <h2 className="text-black mt-5 text-[1.2rem] font-bold">
-                                LIBERICA
-                            </h2>
-
-                            <h2 className="text-black">6.99$</h2>
-                        </div>
-
-                        <div className=" w-[49.5%] overflow-hidden flex flex-col">
-                            <img
-                                src="./excelsa-nobg.png"
-                                alt=""
-                                className="w-[100%] h-[100%] object-cover hover:scale-[1.25] transform transition-transform duration-500 ease-in-out "
-                            />
-                            <h2 className="text-black mt-5 text-[1.2rem] font-bold">
-                                EXCELSA
-                            </h2>
-
-                            <h2 className="text-black">6.99$</h2>
-                        </div>
-
-                        <div className=" w-[49.5%] overflow-hidden flex flex-col">
-                            <img
-                                src="./arabica-nobg.png"
-                                alt=""
-                                className="w-[100%] h-[30rem] object-cover hover:scale-[1.25] transform transition-transform duration-500 ease-in-out "
-                            />
-                            <h2 className="text-black mt-5 text-[1.2rem] font-bold">
-                                ARABICA
-                            </h2>
-
-                            <h2 className="text-black">6.99$</h2>
-                        </div>
-                        <div className=" w-[49.5%] overflow-hidden flex flex-col">
-                            <img
-                                src="./robusta-nobg.png"
-                                alt=""
-                                className="w-[100%] h-[30rem] object-cover hover:scale-[1.25] transform transition-transform duration-500 ease-in-out "
-                            />
-                            <h2 className="text-black mt-5 text-[1.2rem] font-bold">
-                                ROBUSTA
-                            </h2>
-
-                            <h2 className="text-black">6.99$</h2>
-                        </div>
-                    </>
-                );
+        if (products.length === 0) {
+            return (
+                <div className="text-black text-xl mt-10 text-center w-full">
+                    LOADING ..."{activeCategory}".
+                </div>
+            );
         }
+
+        if (activeCategory === 'ALL') {
+            return (
+                <>
+                    <div className="flex flex-wrap">{renderAllProducts()}</div>
+                </>
+            );
+        }
+        if (products.length === 1) {
+            return renderSingleProduct(products[0], 0);
+        }
+    };
+
+    const handleCategoryClick = (category: string) => {
+        setSearchParams(category === 'ALL' ? {} : { category });
     };
 
     return (
@@ -148,7 +148,9 @@ function ProductsComponent() {
                             ].map((category) => (
                                 <button
                                     key={category}
-                                    onClick={() => SetActiveCategory(category)}
+                                    onClick={() =>
+                                        handleCategoryClick(category)
+                                    }
                                     className={`text-[black] text-left ml-[4vw] pt-[5vw] hover:font-bold ${
                                         activeCategory === category
                                             ? 'font-bold'
@@ -158,26 +160,10 @@ function ProductsComponent() {
                                     . {category}
                                 </button>
                             ))}
+                        </div>
+                    </div>
 
-                            {/* <button className="text-[black] text-left ml-[4vw] pt-[5vw] hover:font-bold ">
-                                . SMOOTHER
-                            </button>
-                            <button className="text-[black] text-left ml-[4vw] pt-[5vw] hover:font-bold ">
-                                . SWEET
-                            </button>
-                            <button className="text-[black] text-left ml-[4vw] pt-[5vw] hover:font-bold ">
-                                . UNIQUE
-                            </button>
-                            <button className="text-[black] text-left ml-[4vw] pt-[5vw] hover:font-bold ">
-                                . BITTER
-                            </button> */}
-                        </div>
-                    </div>
-                    <div className="  flex  flex-wrap justify-center">
-                        <div className="product w-[100%]  flex mt-[5rem]">
-                            {renderContent()}
-                        </div>
-                    </div>
+                    {renderContent()}
                 </div>
             </section>
         </>

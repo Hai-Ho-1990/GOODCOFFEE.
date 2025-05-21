@@ -1,11 +1,21 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import pool from './db.js';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+//__filename refererar direkt till index.js sökväg, alltså vad detta fil befinner
+const __filename = fileURLToPath(import.meta.url);
+//__dirname refererar till mappen som index.js befinner
+const __dirname = path.dirname(__filename);
+// Skapa en sökväg där innehåller en mapp 'uploads' vilken ligger i samma mapp som __dirname
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+console.log('__filename är:', __filename);
+console.log('__dirname är:', __dirname);
 
 app.use(cors());
 app.use(express.json());

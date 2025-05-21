@@ -11,7 +11,8 @@
         "skipLibCheck": true
     },
     "include": [
-        "*.ts" // Inkludera alla TS-filer i rotmappen
+        "*.ts",
+        "uploads" // Inkludera alla TS-filer i rotmappen
     ],
     "exclude": [
         "node_modules",
