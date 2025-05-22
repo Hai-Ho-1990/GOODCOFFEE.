@@ -11,6 +11,7 @@ import Logo from './components/Logo';
 import Signin from './pages/Signin';
 import Profile from './pages/Profile';
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
+import ProductDetail from './components/products/ProductDetail';
 
 function App() {
     useEffect(() => {
@@ -41,6 +42,10 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/signin" element={<Signin />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route
+                            path="/products/:id"
+                            element={<ProductDetail />}
+                        />
                     </Routes>
                 </SmoothScrollWrapper>
             }

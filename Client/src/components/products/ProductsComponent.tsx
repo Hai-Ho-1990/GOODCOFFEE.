@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // import Rating from '@mui/material/Rating';
 // import Button from '@mui/material/Button';
 const API_URL = import.meta.env.VITE_API_URL;
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Rating } from '@mui/material';
 
@@ -39,8 +39,9 @@ function ProductsComponent() {
 
     const renderAllProducts = () => {
         return products.map((product, index) => (
-            <div key={index} className="w-[25%] mt-[7rem]">
+            <div key={index} className="w-[25%] mt-[6rem]">
                 <img
+                    onClick={handleProductClick}
                     src={`${API_URL}/uploads/${product.main_image}`}
                     alt=""
                     className="w-[100%] h-[100%] scale-[1.2] object-cover hover:scale-[1.35] transform transition-transform duration-500 ease-in-out"
@@ -63,7 +64,7 @@ function ProductsComponent() {
             <img
                 src={`${API_URL}/uploads/${product.main_image}`}
                 alt=""
-                className="w-[50%] h-[50%%] object-cover "
+                className="w-[50%] h-[50%%] object-cover scale-[1.2]"
             />
             <div className="flex flex-col items-center">
                 <h1 className="text-black mt-5 text-[2.5rem] font-bold">
@@ -79,34 +80,40 @@ function ProductsComponent() {
 
                 <div className="mt-[50px] ">
                     <Button
+                        onClick={handleProductClick}
                         variant="contained"
                         size="large"
                         color="success"
                         sx={{
-                            backgroundColor: '#ffb900',
-                            color: 'black',
+                            backgroundColor: 'black',
+                            color: 'white',
                             padding: '12px 24px',
-                            fontSize: '18px',
+                            fontSize: '16px',
                             fontWeight: 'bold',
-                            width: '10vw',
+                            width: '20vw',
 
                             '&:hover': {
                                 backgroundColor: 'orange'
                             }
                         }}
                     >
-                        {product.discount_price}$
+                        GO TO PRODUCT
+                        {/* {product.discount_price}$ */}
                     </Button>
                 </div>
             </div>
         </div>
     );
+    const navigate = useNavigate();
+    const handleProductClick = () => {
+        navigate('/products/:id');
+    };
 
     const renderContent = () => {
         if (products.length === 0) {
             return (
                 <div className="text-black text-xl mt-10 text-center w-full">
-                    LOADING ..."{activeCategory}".
+                    LOADING ...
                 </div>
             );
         }
@@ -134,8 +141,8 @@ function ProductsComponent() {
                 className="bg-[#c4a88b] h-[100vh] w-[100vw]"
             >
                 <div className="products">
-                    <div className="flex flex-row justify-between">
-                        <h1 className="text-[black] text-left ml-[5vw] pt-[5vw]">
+                    <div className="flex flex-row justify-between pt-[3vw]">
+                        <h1 className="text-[black] text-left ml-[5vw] ">
                             . OUR PRODUCTS
                         </h1>
                         <div className="flex flex-row justify-between pr-[6vw]">
