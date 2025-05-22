@@ -1,10 +1,14 @@
 import Navbar from '../Navbar';
 import HeroProduct from './HeroProduct';
-function ProductHeader() {
+
+interface ProductHeaderProps {
+    cartCount: number;
+}
+function ProductHeader({ cartCount }: ProductHeaderProps) {
     return (
         <>
             <section data-scroll-section className="h-[100vh] w-[100vw]">
-                <Navbar />
+                <Navbar cartCount={cartCount} />
                 <HeroProduct />
                 <div
                     // ref={heroRef}

@@ -4,10 +4,10 @@ import ProductHeader from '../components/products/ProductHeader';
 import NewsletterComponent from '../components/products/NewsletterComponent';
 import RecensionComponent from '../components/products/RecensionComponent';
 
-export default function Products() {
+export default function Products({ cartCount }: { cartCount: number }) {
     return (
         <>
-            <ProductHeader />
+            <ProductHeader cartCount={cartCount} />
             <ProductsComponent />
             <RecensionComponent />
             <NewsletterComponent />

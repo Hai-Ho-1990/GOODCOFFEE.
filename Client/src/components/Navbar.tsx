@@ -4,7 +4,11 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Badge from '@mui/material/Badge';
-export default function Navbar() {
+
+interface NavbarProps {
+    cartCount: number;
+}
+export default function Navbar({ cartCount }: NavbarProps) {
     const isLoggedin = () => {
         return !!localStorage.getItem('token');
     };
@@ -47,7 +51,7 @@ export default function Navbar() {
 
                 <FavoriteIcon fontSize="medium" />
                 <div className="shoping-cart flex flex-row gap-1 relative">
-                    <Badge badgeContent={1} color="warning">
+                    <Badge badgeContent={cartCount} color="warning">
                         <LocalMallOutlinedIcon fontSize="medium" />
                     </Badge>
                 </div>

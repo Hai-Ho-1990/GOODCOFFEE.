@@ -6,7 +6,7 @@ const productController = async (req: Request, res: Response) => {
     const { category } = req.query;
 
     let query =
-        'SELECT name, discount_price, main_image, description FROM products';
+        'SELECT id, name, discount_price, main_image, description FROM products';
     const values = [];
 
     if (category) {

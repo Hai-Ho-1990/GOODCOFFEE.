@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Button, Rating } from '@mui/material';
 
 interface Product {
+    id: number;
     name: string;
     discount_price: number;
     main_image: string;
@@ -38,10 +39,10 @@ function ProductsComponent() {
     }, [activeCategory]);
 
     const renderAllProducts = () => {
-        return products.map((product, index) => (
-            <div key={index} className="w-[25%] mt-[6rem]">
+        return products.map((product) => (
+            <div key={product.id} className="w-[25%] mt-[6rem]">
                 <img
-                    onClick={handleProductClick}
+                    onClick={() => handleProductClick(product.id)}
                     src={`${API_URL}/uploads/${product.main_image}`}
                     alt=""
                     className="w-[100%] h-[100%] scale-[1.2] object-cover hover:scale-[1.35] transform transition-transform duration-500 ease-in-out"
@@ -56,15 +57,15 @@ function ProductsComponent() {
         ));
     };
 
-    const renderSingleProduct = (product: Product, index: number) => (
+    const renderSingleProduct = (product: Product) => (
         <div
-            key={index}
+            key={product.id}
             className=" w-[100%] overflow-hidden flex flex-row items-center"
         >
             <img
                 src={`${API_URL}/uploads/${product.main_image}`}
                 alt=""
-                className="w-[50%] h-[50%%] object-cover scale-[1.2]"
+                className="w-[50%] h-[50%] object-cover scale-[1.2]"
             />
             <div className="flex flex-col items-center">
                 <h1 className="text-black mt-5 text-[2.5rem] font-bold">
@@ -80,7 +81,10 @@ function ProductsComponent() {
 
                 <div className="mt-[50px] ">
                     <Button
-                        onClick={handleProductClick}
+                        onClick={() => {
+                            console.log('Clicked product id:', product.id);
+                            handleProductClick(product.id);
+                        }}
                         variant="contained"
                         size="large"
                         color="success"
@@ -105,8 +109,9 @@ function ProductsComponent() {
         </div>
     );
     const navigate = useNavigate();
-    const handleProductClick = () => {
-        navigate('/products/:id');
+    const handleProductClick = (id: number) => {
+        navigate(`/products/${id}`);
+        console.log(id);
     };
 
     const renderContent = () => {
@@ -126,7 +131,7 @@ function ProductsComponent() {
             );
         }
         if (products.length === 1) {
-            return renderSingleProduct(products[0], 0);
+            return renderSingleProduct(products[0]);
         }
     };
 
