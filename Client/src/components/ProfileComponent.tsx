@@ -19,7 +19,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 //
 
-function ProfileComponent() {
+interface ProfileComponentProps {
+    cartCount: number;
+}
+
+function ProfileComponent({ cartCount }: ProfileComponentProps) {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -62,7 +66,7 @@ function ProfileComponent() {
             data-scroll-section
             className="h-[100vh] w-[100vw] flex flex-col items-center"
         >
-            <Navbar />
+            <Navbar cartCount={cartCount} />
 
             <div className="h-[75vh] w-full mt-[56px] flex flex-row justify-center">
                 <div className=" w-[15vw] h-[100%] bg-[#232628] flex flex-col rounded-s-4xl  mr-[-100px]">

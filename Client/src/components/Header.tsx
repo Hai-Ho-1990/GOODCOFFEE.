@@ -1,9 +1,7 @@
 import Hero from './Hero';
 import Navbar from './Navbar';
-interface ProductHeaderProps {
-    cartCount: number;
-}
-function Header({ cartCount }: ProductHeaderProps) {
+
+function Header({ cartCount }: { cartCount: number }) {
     return (
         <>
             <section data-scroll-section className="h-[100vh] w-[100vw]">

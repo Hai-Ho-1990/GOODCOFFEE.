@@ -46,6 +46,7 @@ function App() {
         const updatedCart = [...cartItems, product];
         setCartCount(updatedCart.length);
         setCartItems(updatedCart);
+        //Förvandlar arrayen cartItems till sträng så att kunna lagras den i webbläsare
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
 
@@ -70,7 +71,11 @@ function App() {
                         />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signin" element={<Signin />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route
+                            path="/profile"
+                            element={<Profile cartCount={cartCount} />}
+                        />
+
                         <Route
                             path="/products/:id"
                             element={

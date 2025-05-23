@@ -1,9 +1,9 @@
 import ProfileComponent from '../components/ProfileComponent';
 
-function Profile() {
+function Profile({ cartCount }: { cartCount: number }) {
     return (
         <>
-            <ProfileComponent />
+            <ProfileComponent cartCount={cartCount} />
         </>
     );
 }

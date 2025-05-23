@@ -4,11 +4,8 @@ import ProductIntro from '../components/ProductIntro.tsx';
 import SaleSection from '../components/SaleSection.tsx';
 import Footer from '../components/Footer.tsx';
 import MenuSection from '../components/MenuSection.tsx';
-interface ProductHeaderProps {
-    cartCount: number;
-}
 
-export default function Home({ cartCount }: ProductHeaderProps) {
+export default function Home({ cartCount }: { cartCount: number }) {
     return (
         <>
             <Header cartCount={cartCount} />
