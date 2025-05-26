@@ -10,6 +10,8 @@ import axios from 'axios';
 interface ProductProps {
     onAddToCart: (product: Product) => void;
     cartCount: number;
+    cartItems: Product[];
+    onRemoveItem: (name: string) => void;
 }
 interface Product {
     name: string;
@@ -18,9 +20,15 @@ interface Product {
     main_image: string;
     status: string;
     quantity: number;
+    stock: number;
 }
 
-function ProductDetail({ cartCount, onAddToCart }: ProductProps) {
+function ProductDetail({
+    cartCount,
+    onAddToCart,
+    cartItems,
+    onRemoveItem
+}: ProductProps) {
     const [product, setProduct] = useState<Product | null>(null);
     const { id } = useParams();
 
@@ -45,7 +53,11 @@ function ProductDetail({ cartCount, onAddToCart }: ProductProps) {
                     data-scroll-section
                     className="w-[100vw] h-[100vh] flex flex-col "
                 >
-                    <Navbar cartCount={cartCount} />
+                    <Navbar
+                        cartCount={cartCount}
+                        cartItems={cartItems}
+                        onRemoveItem={onRemoveItem}
+                    />
                     <div className=" w-[100%]  mt-[3rem] flex flex-row ">
                         <img
                             src={`${API_URL}/uploads/${product.main_image}`}

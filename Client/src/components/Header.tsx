@@ -1,11 +1,41 @@
 import Hero from './Hero';
 import Navbar from './Navbar';
 
-function Header({ cartCount }: { cartCount: number }) {
+interface Product {
+    name: string;
+    price: number;
+    discount_price: number;
+    main_image: string;
+    status: string;
+    quantity: number;
+    stock: number;
+}
+
+interface headerProps {
+    cartCount: number;
+    cartItems: Product[];
+    onRemoveItem: (name: string) => void;
+    setCartCount: (count: number) => void;
+    setCartItems: (items: Product[]) => void;
+}
+
+function Header({
+    cartCount,
+    cartItems,
+    onRemoveItem,
+    setCartCount,
+    setCartItems
+}: headerProps) {
     return (
         <>
             <section data-scroll-section className="h-[100vh] w-[100vw]">
-                <Navbar cartCount={cartCount} />
+                <Navbar
+                    cartCount={cartCount}
+                    cartItems={cartItems}
+                    onRemoveItem={onRemoveItem}
+                    setCartCount={setCartCount}
+                    setCartItems={setCartItems}
+                />
                 <Hero />
                 <div
                     // ref={heroRef}

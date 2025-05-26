@@ -1,15 +1,17 @@
 import './App.css';
 // import { useReducer } from 'react';
+import { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+const Home = lazy(() => import('./pages/Home'));
+const Products = lazy(() => import('./pages/Products'));
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Products from './pages/Products';
-import Login from './pages/Login';
+const Login = lazy(() => import('./pages/Login'));
+const Signin = lazy(() => import('./pages/Signin'));
 import Logo from './components/Logo';
-import Signin from './pages/Signin';
-import Profile from './pages/Profile';
+const Profile = lazy(() => import('./pages/Profile'));
+
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 import ProductDetail from './components/products/ProductDetail';
 
@@ -20,10 +22,12 @@ interface Product {
     main_image: string;
     status: string;
     quantity: number;
+    stock: number;
 }
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
+    // Produkter som kund lägger i korgen
     const [cartItems, setCartItems] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -33,7 +37,12 @@ function App() {
         if (savedCart) {
             const parseCart = JSON.parse(savedCart);
             setCartItems(parseCart);
-            setCartCount(parseCart.length);
+            setCartCount(
+                parseCart.reduce(
+                    (sum: number, item: Product) => sum + item.quantity,
+                    0
+                )
+            );
         }
 
         fetch(`${API_BASE}/api`)
@@ -43,10 +52,32 @@ function App() {
     }, []);
 
     const handleAddToCart = (product: Product) => {
-        const updatedCart = [...cartItems, product];
-        setCartCount(updatedCart.length);
+        const existingProduct = cartItems.find(
+            (item) => item.name === product.name
+        );
+
+        let updatedCart;
+
+        if (existingProduct) {
+            updatedCart = cartItems.map((item) =>
+                item.name === product.name
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+        } else {
+            updatedCart = [...cartItems, { ...product, quantity: 1 }];
+        }
+
+        setCartCount(updatedCart.reduce((sum, item) => sum + item.quantity, 0));
         setCartItems(updatedCart);
         //Förvandlar arrayen cartItems till sträng så att kunna lagras den i webbläsare
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    };
+
+    const handleRemoveItem = (name: string) => {
+        const updatedCart = cartItems.filter((item) => item.name !== name);
+        setCartItems(updatedCart);
+        setCartCount(updatedCart.reduce((sum, item) => sum + item.quantity, 0));
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
 
@@ -59,7 +90,14 @@ function App() {
                             path="/"
                             element={
                                 <>
-                                    <Home cartCount={cartCount} /> <Logo />
+                                    <Home
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />{' '}
+                                    <Logo />
                                 </>
                             }
                         />
@@ -67,13 +105,27 @@ function App() {
                         <Route path="/contact" element={<Contact />} />
                         <Route
                             path="/products"
-                            element={<Products cartCount={cartCount} />}
+                            element={
+                                <Products
+                                    cartCount={cartCount}
+                                    cartItems={cartItems}
+                                    onRemoveItem={handleRemoveItem}
+                                    setCartCount={setCartCount}
+                                    setCartItems={setCartItems}
+                                />
+                            }
                         />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signin" element={<Signin />} />
                         <Route
                             path="/profile"
-                            element={<Profile cartCount={cartCount} />}
+                            element={
+                                <Profile
+                                    cartCount={cartCount}
+                                    cartItems={cartItems}
+                                    onRemoveItem={handleRemoveItem}
+                                />
+                            }
                         />
 
                         <Route
@@ -82,6 +134,8 @@ function App() {
                                 <ProductDetail
                                     onAddToCart={handleAddToCart}
                                     cartCount={cartCount}
+                                    cartItems={cartItems}
+                                    onRemoveItem={handleRemoveItem}
                                 />
                             }
                         />

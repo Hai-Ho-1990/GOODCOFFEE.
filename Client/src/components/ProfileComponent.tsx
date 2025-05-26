@@ -19,11 +19,27 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 //
 
-interface ProfileComponentProps {
-    cartCount: number;
+interface Product {
+    name: string;
+    price: number;
+    discount_price: number;
+    main_image: string;
+    status: string;
+    quantity: number;
+    stock: number;
 }
 
-function ProfileComponent({ cartCount }: ProfileComponentProps) {
+interface ProfileComponentProps {
+    cartCount: number;
+    cartItems: Product[];
+    onRemoveItem: (name: string) => void;
+}
+
+function ProfileComponent({
+    cartCount,
+    cartItems,
+    onRemoveItem
+}: ProfileComponentProps) {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -66,7 +82,11 @@ function ProfileComponent({ cartCount }: ProfileComponentProps) {
             data-scroll-section
             className="h-[100vh] w-[100vw] flex flex-col items-center"
         >
-            <Navbar cartCount={cartCount} />
+            <Navbar
+                cartCount={cartCount}
+                cartItems={cartItems}
+                onRemoveItem={onRemoveItem}
+            />
 
             <div className="h-[75vh] w-full mt-[56px] flex flex-row justify-center">
                 <div className=" w-[15vw] h-[100%] bg-[#232628] flex flex-col rounded-s-4xl  mr-[-100px]">
