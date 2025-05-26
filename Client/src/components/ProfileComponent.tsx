@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PersonalInfo from './my profile/PersonalInfo';
 import OrderComponent from './my profile/OrderComponent';
 import React from 'react';
+import { Product } from '../types/Product';
 
 //
 
@@ -18,16 +19,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 //
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
 
 interface ProfileComponentProps {
     cartCount: number;

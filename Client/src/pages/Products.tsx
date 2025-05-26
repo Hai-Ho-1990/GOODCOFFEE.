@@ -3,16 +3,7 @@ import Footer from '../components/Footer';
 import ProductHeader from '../components/products/ProductHeader';
 import NewsletterComponent from '../components/products/NewsletterComponent';
 import RecensionComponent from '../components/products/RecensionComponent';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+import { Product } from '../types/Product';
 
 interface ProductProps {
     cartCount: number;

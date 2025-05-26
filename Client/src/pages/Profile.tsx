@@ -1,14 +1,5 @@
 import ProfileComponent from '../components/ProfileComponent';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+import { Product } from '../types/Product';
 
 interface ProfileProps {
     cartCount: number;

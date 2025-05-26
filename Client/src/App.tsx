@@ -14,16 +14,7 @@ const Profile = lazy(() => import('./pages/Profile'));
 
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 import ProductDetail from './components/products/ProductDetail';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+import { Product } from '../src/types/Product';
 
 function App() {
     const [cartCount, setCartCount] = useState(0);

@@ -6,6 +6,7 @@ import getPersonalInfo from '../controllers/personalController.js';
 import updateProfile from '../controllers/updateProfileController.js';
 import productController from '../controllers/productController.js';
 import productDetailController from '../controllers/productDetailController.js';
+import checkOutController from '../controllers/checkOutController.js';
 
 const router = express.Router();
 
@@ -15,4 +16,5 @@ router.get('/profile', getPersonalInfo);
 router.put('/profile', updateProfile);
 router.get('/product', productController);
 router.get('/product/:id', productDetailController);
+router.post('/checkout', checkOutController);
 export default router;

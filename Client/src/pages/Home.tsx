@@ -4,16 +4,7 @@ import ProductIntro from '../components/ProductIntro.tsx';
 import SaleSection from '../components/SaleSection.tsx';
 import Footer from '../components/Footer.tsx';
 import MenuSection from '../components/MenuSection.tsx';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+import { Product } from '../types/Product';
 
 interface HomeProps {
     cartCount: number;

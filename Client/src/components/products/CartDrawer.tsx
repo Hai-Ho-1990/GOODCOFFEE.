@@ -4,16 +4,9 @@ import { IconButton, Button, Badge } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+const API_URL = import.meta.env.VITE_API_URL;
+import axios from 'axios';
+import { Product } from '../../types/Product';
 
 const QuantitySelector = ({
     quantity,
@@ -36,6 +29,61 @@ const QuantitySelector = ({
             </IconButton>
         </div>
     );
+};
+
+const handleCheckout = async ({
+    cartItems,
+    setCartItems,
+    setCartCount
+}: {
+    cartItems: Product[];
+    setCartCount: (count: number) => void;
+    setCartItems: (items: Product[]) => void;
+}) => {
+    try {
+        const orderItems = cartItems.map((item) => ({
+            product_id: item.id,
+            quantity: item.quantity,
+            unit_price: item.discount_price || item.price
+        }));
+
+        const totalPrice = cartItems.reduce(
+            (sum, item) =>
+                sum + (item.discount_price || item.price) * item.quantity,
+            0
+        );
+        console.log('orderItems:', orderItems);
+        console.log('totalPrice:', totalPrice);
+        console.log('Cart items being sent:', cartItems);
+        console.log('Order items:', orderItems);
+
+        const token = localStorage.getItem('token');
+        const response = await axios.post(
+            `${API_URL}/api/checkout`,
+            {
+                total_price: totalPrice,
+                order_date: new Date().toISOString(),
+                order_items: orderItems
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        console.log('token:', token);
+        if (response.status === 201) {
+            console.log('Order sent sucessfully:', response.data);
+            setCartItems([]);
+            setCartCount(0);
+            localStorage.removeItem('cartItems');
+            alert('Thank you for your purchasing.');
+        } else {
+            alert('Could not complete your shopping');
+        }
+    } catch (err) {
+        console.error('Checkout error.', err);
+    }
 };
 
 export default function CartDrawer({
@@ -165,6 +213,13 @@ export default function CartDrawer({
                     <p className="text-[1.5rem]">${totalPrice.toFixed(2)}</p>
                 </div>
                 <Button
+                    onClick={() =>
+                        handleCheckout({
+                            cartItems,
+                            setCartItems,
+                            setCartCount
+                        })
+                    }
                     type="submit"
                     variant="contained"
                     size="large"

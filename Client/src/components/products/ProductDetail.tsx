@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 const API_URL = import.meta.env.VITE_API_URL;
 import axios from 'axios';
+import { Product } from '../../types/Product';
 
 interface ProductProps {
     onAddToCart: (product: Product) => void;
@@ -14,15 +15,6 @@ interface ProductProps {
     onRemoveItem: (name: string) => void;
     setCartCount: (count: number) => void;
     setCartItems: (items: Product[]) => void;
-}
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
 }
 
 function ProductDetail({
@@ -138,7 +130,13 @@ function ProductDetail({
                             </div>
                             <div className="mt-[20px] ">
                                 <Button
-                                    onClick={() => onAddToCart(product)}
+                                    onClick={() => {
+                                        console.log(
+                                            'Adding to cart product:',
+                                            product
+                                        );
+                                        onAddToCart(product);
+                                    }}
                                     type="submit"
                                     variant="contained"
                                     size="large"

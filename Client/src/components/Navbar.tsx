@@ -3,18 +3,8 @@ import Logo from './Logo';
 import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import { Product } from '../types/Product';
 const CartDrawer = lazy(() => import('./products/CartDrawer'));
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
 
 interface navbarProps {
     cartCount: number;

@@ -1,15 +1,6 @@
 import Navbar from '../Navbar';
 import HeroProduct from './HeroProduct';
-
-interface Product {
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
+import { Product } from '../../types/Product';
 
 interface ProductHeaderProps {
     cartCount: number;
