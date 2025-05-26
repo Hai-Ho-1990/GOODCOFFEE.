@@ -33,12 +33,16 @@ interface ProfileComponentProps {
     cartCount: number;
     cartItems: Product[];
     onRemoveItem: (name: string) => void;
+    setCartCount: (count: number) => void;
+    setCartItems: (items: Product[]) => void;
 }
 
 function ProfileComponent({
     cartCount,
     cartItems,
-    onRemoveItem
+    onRemoveItem,
+    setCartCount,
+    setCartItems
 }: ProfileComponentProps) {
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -86,6 +90,8 @@ function ProfileComponent({
                 cartCount={cartCount}
                 cartItems={cartItems}
                 onRemoveItem={onRemoveItem}
+                setCartCount={setCartCount}
+                setCartItems={setCartItems}
             />
 
             <div className="h-[75vh] w-full mt-[56px] flex flex-row justify-center">

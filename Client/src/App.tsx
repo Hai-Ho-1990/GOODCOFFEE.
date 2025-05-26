@@ -124,6 +124,8 @@ function App() {
                                     cartCount={cartCount}
                                     cartItems={cartItems}
                                     onRemoveItem={handleRemoveItem}
+                                    setCartCount={setCartCount}
+                                    setCartItems={setCartItems}
                                 />
                             }
                         />
@@ -136,6 +138,8 @@ function App() {
                                     cartCount={cartCount}
                                     cartItems={cartItems}
                                     onRemoveItem={handleRemoveItem}
+                                    setCartCount={setCartCount}
+                                    setCartItems={setCartItems}
                                 />
                             }
                         />

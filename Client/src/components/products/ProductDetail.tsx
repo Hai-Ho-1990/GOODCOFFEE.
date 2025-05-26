@@ -12,6 +12,8 @@ interface ProductProps {
     cartCount: number;
     cartItems: Product[];
     onRemoveItem: (name: string) => void;
+    setCartCount: (count: number) => void;
+    setCartItems: (items: Product[]) => void;
 }
 interface Product {
     name: string;
@@ -27,7 +29,9 @@ function ProductDetail({
     cartCount,
     onAddToCart,
     cartItems,
-    onRemoveItem
+    onRemoveItem,
+    setCartItems,
+    setCartCount
 }: ProductProps) {
     const [product, setProduct] = useState<Product | null>(null);
     const { id } = useParams();
@@ -57,6 +61,8 @@ function ProductDetail({
                         cartCount={cartCount}
                         cartItems={cartItems}
                         onRemoveItem={onRemoveItem}
+                        setCartCount={setCartCount}
+                        setCartItems={setCartItems}
                     />
                     <div className=" w-[100%]  mt-[3rem] flex flex-row ">
                         <img
