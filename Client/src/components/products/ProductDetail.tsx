@@ -88,16 +88,16 @@ function ProductDetail({
                             </div>
 
                             <div className=" flex flex-row items-center gap-2">
-                                {product.quantity >= 50 ? (
+                                {product.stock >= 50 ? (
                                     <div className="w-[10px] h-[10px] rounded-full bg-green-700"></div>
-                                ) : product.quantity > 0 ? (
+                                ) : product.stock > 0 ? (
                                     <div className="w-[10px] h-[10px] rounded-full bg-yellow-700"></div>
                                 ) : (
                                     <div className="w-[10px] h-[10px] rounded-full bg-red-700"></div>
                                 )}
 
                                 <p className="text-black">
-                                    {product.status} ({product.quantity})
+                                    {product.status} ({product.stock})
                                 </p>
                             </div>
                             <div className="flex flex-col mt-5">
@@ -141,7 +141,7 @@ function ProductDetail({
                                     variant="contained"
                                     size="large"
                                     color="success"
-                                    disabled={product.quantity === 0}
+                                    disabled={product.stock === 0}
                                     sx={{
                                         backgroundColor: 'black',
                                         color: 'white',

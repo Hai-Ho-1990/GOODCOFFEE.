@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Product } from '../types/Product';
 const CartDrawer = lazy(() => import('./products/CartDrawer'));
+import { useAuth } from '../context/AuthContext';
 
 interface navbarProps {
     cartCount: number;
@@ -21,7 +22,7 @@ export default function Navbar({
     setCartCount,
     setCartItems
 }: navbarProps) {
-    const isLoggedin = () => !!localStorage.getItem('token');
+    const { isLoggedIn, isAdmin } = useAuth();
 
     return (
         <div className="container-navbar flex items-center justify-around w-[100%] pt-4">
@@ -34,14 +35,21 @@ export default function Navbar({
             </nav>
             <div className="z-1 flex flex-row gap-7 items-center">
                 <Link
-                    to={isLoggedin() ? '/profile' : '/login'}
+                    to={
+                        isLoggedIn
+                            ? isAdmin
+                                ? '/admin'
+                                : '/profile'
+                            : '/login'
+                    }
                     className="z-1 text-lg"
                 >
                     <PersonIcon
                         fontSize="medium"
-                        sx={isLoggedin() ? { color: '#ffb900' } : {}}
+                        sx={isLoggedIn ? { color: '#ffb900' } : {}}
                     />
                 </Link>
+
                 <FavoriteIcon fontSize="medium" />
                 <CartDrawer
                     cartCount={cartCount}

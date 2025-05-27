@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 const API_URL = import.meta.env.VITE_API_URL;
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function LoginComponent() {
     const navigate = useNavigate();
@@ -12,6 +13,8 @@ function LoginComponent() {
     const [errorPassword, setErrorPassword] = useState(false);
     const [helperTextUsername, setHelperErrorUsername] = useState('');
     const [helperTextPassword, setHelperTextPassword] = useState('');
+
+    const { login } = useAuth(); // <-- Lägg till detta
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -38,6 +41,8 @@ function LoginComponent() {
             console.log(response.data.token);
             console.log(response.data.username);
             console.log(response.data);
+
+            login(response.data.token);
             // Och navigera till homepage
             navigate('/');
         } catch (err) {

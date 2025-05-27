@@ -4,6 +4,7 @@ import PersonalInfo from './my profile/PersonalInfo';
 import OrderComponent from './my profile/OrderComponent';
 import React from 'react';
 import { Product } from '../types/Product';
+import { useAuth } from '../context/AuthContext';
 
 //
 
@@ -35,11 +36,14 @@ function ProfileComponent({
     setCartCount,
     setCartItems
 }: ProfileComponentProps) {
+    const { logout } = useAuth();
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
+        logout();
         navigate('/');
     };
+
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
     const handleListItemClick = (

@@ -11,6 +11,7 @@ import trackingOrderController from '../controllers/trackingOrderController.js';
 // import för admin
 import { authenticate } from '../middleware/authenticate.js';
 import { isAdmin } from '../middleware/isAdmin.js';
+import { getAllProducts } from '../controllers/adminProductController.js';
 
 const router = express.Router();
 
@@ -25,5 +26,5 @@ router.post('/checkout', checkOutController);
 router.get('/orders', trackingOrderController);
 
 //admin route
-
+router.get('/admin/products', authenticate, isAdmin, getAllProducts);
 export default router;

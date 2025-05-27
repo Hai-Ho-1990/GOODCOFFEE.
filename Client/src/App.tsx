@@ -15,6 +15,8 @@ const Profile = lazy(() => import('./pages/Profile'));
 import SmoothScrollWrapper from './components/SmoothScrollWrapper';
 import ProductDetail from './components/products/ProductDetail';
 import { Product } from '../src/types/Product';
+import AdminDashboardLayout from './pages/admin/DashboardLayout';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -75,67 +77,81 @@ function App() {
     return (
         <>
             {
-                <SmoothScrollWrapper>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <>
-                                    <Home
+                <AuthProvider>
+                    <SmoothScrollWrapper>
+                        <Routes>
+                            <Route
+                                path="/admin"
+                                element={
+                                    <AdminDashboardLayout
                                         cartCount={cartCount}
                                         cartItems={cartItems}
                                         onRemoveItem={handleRemoveItem}
                                         setCartCount={setCartCount}
                                         setCartItems={setCartItems}
-                                    />{' '}
-                                    <Logo />
-                                </>
-                            }
-                        />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route
-                            path="/products"
-                            element={
-                                <Products
-                                    cartCount={cartCount}
-                                    cartItems={cartItems}
-                                    onRemoveItem={handleRemoveItem}
-                                    setCartCount={setCartCount}
-                                    setCartItems={setCartItems}
-                                />
-                            }
-                        />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signin" element={<Signin />} />
-                        <Route
-                            path="/profile"
-                            element={
-                                <Profile
-                                    cartCount={cartCount}
-                                    cartItems={cartItems}
-                                    onRemoveItem={handleRemoveItem}
-                                    setCartCount={setCartCount}
-                                    setCartItems={setCartItems}
-                                />
-                            }
-                        />
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/"
+                                element={
+                                    <>
+                                        <Home
+                                            cartCount={cartCount}
+                                            cartItems={cartItems}
+                                            onRemoveItem={handleRemoveItem}
+                                            setCartCount={setCartCount}
+                                            setCartItems={setCartItems}
+                                        />{' '}
+                                        <Logo />
+                                    </>
+                                }
+                            />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
+                            <Route
+                                path="/products"
+                                element={
+                                    <Products
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />
+                                }
+                            />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/signin" element={<Signin />} />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <Profile
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />
+                                }
+                            />
 
-                        <Route
-                            path="/products/:id"
-                            element={
-                                <ProductDetail
-                                    onAddToCart={handleAddToCart}
-                                    cartCount={cartCount}
-                                    cartItems={cartItems}
-                                    onRemoveItem={handleRemoveItem}
-                                    setCartCount={setCartCount}
-                                    setCartItems={setCartItems}
-                                />
-                            }
-                        />
-                    </Routes>
-                </SmoothScrollWrapper>
+                            <Route
+                                path="/products/:id"
+                                element={
+                                    <ProductDetail
+                                        onAddToCart={handleAddToCart}
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />
+                                }
+                            />
+                        </Routes>
+                    </SmoothScrollWrapper>
+                </AuthProvider>
             }
         </>
     );
