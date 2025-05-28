@@ -46,7 +46,8 @@ const loginUser = async (req: Request, res: Response) => {
     const token = jwt.sign(
         {
             id: userId,
-            username: user.username
+            username: user.username,
+            isAdmin: user.admin === true
         },
         'minhemlighetcode',
         { expiresIn: '1y' }

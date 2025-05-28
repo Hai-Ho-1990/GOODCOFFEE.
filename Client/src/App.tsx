@@ -1,6 +1,6 @@
 import './App.css';
 // import { useReducer } from 'react';
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 const Home = lazy(() => import('./pages/Home'));
@@ -82,27 +82,32 @@ function App() {
                         <Routes>
                             <Route
                                 path="/admin"
-                                element={
-                                    <AdminDashboardLayout
-                                        cartCount={cartCount}
-                                        cartItems={cartItems}
-                                        onRemoveItem={handleRemoveItem}
-                                        setCartCount={setCartCount}
-                                        setCartItems={setCartItems}
-                                    />
-                                }
+                                element={<AdminDashboardLayout />}
                             />
                             <Route
                                 path="/"
                                 element={
                                     <>
-                                        <Home
-                                            cartCount={cartCount}
-                                            cartItems={cartItems}
-                                            onRemoveItem={handleRemoveItem}
-                                            setCartCount={setCartCount}
-                                            setCartItems={setCartItems}
-                                        />{' '}
+                                        <Suspense
+                                            fallback={
+                                                <div
+                                                    style={{
+                                                        padding: '2rem',
+                                                        textAlign: 'center'
+                                                    }}
+                                                >
+                                                    Loading...
+                                                </div>
+                                            }
+                                        >
+                                            <Home
+                                                cartCount={cartCount}
+                                                cartItems={cartItems}
+                                                onRemoveItem={handleRemoveItem}
+                                                setCartCount={setCartCount}
+                                                setCartItems={setCartItems}
+                                            />
+                                        </Suspense>
                                         <Logo />
                                     </>
                                 }

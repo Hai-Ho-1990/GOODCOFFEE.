@@ -7,4 +7,5 @@ export interface Product {
     status: string;
     quantity: number;
     stock: number;
+    description: string;
 }

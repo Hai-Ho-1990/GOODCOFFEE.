@@ -5,14 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Rating } from '@mui/material';
-
-interface Product {
-    id: number;
-    name: string;
-    discount_price: number;
-    main_image: string;
-    description: string;
-}
+import { Product } from '../../types/Product';
 
 function ProductsComponent() {
     const [products, setProducts] = useState<Product[]>([]);

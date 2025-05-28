@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
+import Logo from '../../components/Logo';
+import { useAuth } from '../../context/AuthContext';
 
 import Products from './Products';
 import Users from './Users';
@@ -16,37 +17,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-//
-interface DashboardLayoutProps {
-    cartCount: number;
-    cartItems: Product[];
-    onRemoveItem: (name: string) => void;
-    setCartCount: (count: number) => void;
-    setCartItems: (items: Product[]) => void;
-}
-interface Product {
-    id: number;
-    name: string;
-    price: number;
-    discount_price: number;
-    main_image: string;
-    status: string;
-    quantity: number;
-    stock: number;
-}
-
-function AdminDashboardLayout({
-    cartCount,
-    cartItems,
-    onRemoveItem,
-    setCartCount,
-    setCartItems
-}: DashboardLayoutProps) {
+function AdminDashboardLayout() {
     const navigate = useNavigate();
     const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+    const { logout } = useAuth();
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        logout();
+
         navigate('/');
     };
 
@@ -71,17 +48,21 @@ function AdminDashboardLayout({
 
     return (
         <section className="h-[100vh] w-[100vw] flex flex-col items-center">
-            <Navbar
+            {/* <Navbar
                 cartCount={cartCount}
                 cartItems={cartItems}
                 onRemoveItem={onRemoveItem}
                 setCartCount={setCartCount}
                 setCartItems={setCartItems}
-            />
-            <div className="h-[90vh] w-full mt-[56px] flex flex-row justify-center">
+            /> */}
+            <div className="h-[100vh] w-full  flex flex-row justify-center">
                 {/* SIDOMENY */}
-                <div className="w-[15vw] h-full bg-[#1f1f1f] flex flex-col  text-white">
-                    <ol className="flex flex-col pt-20 w-full text-sm">
+                <div className="w-[15vw] h%-full bg-[#1f1f1f] flex flex-col  text-white">
+                    <div className="pt-[15%]">
+                        <Logo />
+                    </div>
+
+                    <ol className="flex flex-col pt-15 w-full text-sm">
                         <li>
                             <ListItemButton
                                 selected={selectedIndex === 0}
@@ -138,7 +119,7 @@ function AdminDashboardLayout({
                 </div>
 
                 {/* INNEHÅLL */}
-                <div className="w-[100vw] bg-white  p-6 overflow-y-auto">
+                <div className="w-[100vw] bg-[white]  p-6 overflow-y-auto">
                     {renderContent()}
                 </div>
             </div>

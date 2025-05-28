@@ -29,13 +29,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const login = (token: string) => {
         localStorage.setItem('token', token);
-        setIsLoggedIn(true);
         try {
             const decoded = jwtDecode<{ isAdmin: boolean }>(token);
             setIsAdmin(decoded.isAdmin);
         } catch {
             setIsAdmin(false);
         }
+        setIsLoggedIn(true);
     };
 
     const logout = () => {
