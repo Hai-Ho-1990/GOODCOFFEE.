@@ -10,6 +10,7 @@ export default function SmoothScrollWrapper({
 }) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const scrollRef = useRef<LocomotiveScroll | null>(null);
+    const location = useLocation();
 
     useEffect(() => {
         if (containerRef.current) {
@@ -22,23 +23,49 @@ export default function SmoothScrollWrapper({
         }
 
         const interval = setInterval(() => {
-            scrollRef.current?.update(); // Uppdaterar Locomotive Scroll
+            scrollRef.current?.update();
         }, 2500);
 
         return () => {
-            clearInterval(interval); // Rensa intervallet vid unmount
-            scrollRef.current?.destroy(); // Rensa Locomotive Scroll
+            clearInterval(interval);
+            scrollRef.current?.destroy();
         };
     }, []);
 
-    const location = useLocation();
-
+    // Uppdatera scroll vid sidbyte
     useEffect(() => {
-        // Används för att smoothscroll och innehållet ska appliceras även i andra path
         setTimeout(() => {
             scrollRef.current?.update();
-        }, 100); // liten delay för att låta DOM uppdateras
+        }, 100);
     }, [location.pathname]);
+
+    // När alla bilder laddats, uppdatera scroll
+    useEffect(() => {
+        const handleImagesLoaded = () => {
+            scrollRef.current?.update();
+        };
+
+        const images = containerRef.current?.querySelectorAll('img');
+        if (!images) return;
+
+        let loaded = 0;
+        images.forEach((img) => {
+            if (img.complete) {
+                loaded++;
+            } else {
+                img.addEventListener('load', () => {
+                    loaded++;
+                    if (loaded === images.length) {
+                        handleImagesLoaded();
+                    }
+                });
+            }
+        });
+
+        if (loaded === images.length) {
+            handleImagesLoaded();
+        }
+    }, [children]);
 
     return (
         <div ref={containerRef} data-scroll-container>

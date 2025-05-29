@@ -11,6 +11,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 import { Product } from '../../types/Product';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import EditIcon from '@mui/icons-material/Edit';
+import EditProductModal from '../../components/admin/EditProductModal';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 interface Column {
     id: keyof Data;
@@ -68,6 +72,24 @@ export default function StickyHeadTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [products, setProducts] = useState<Product[]>([]);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(
+        null
+    );
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleEditClick = (product: Product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
+
+    const handleSaveProduct = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/product`);
+            setProducts(response.data); // ersätter hela listan
+        } catch (err) {
+            console.error('Failed to refresh products after save', err);
+        }
+    };
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -85,16 +107,6 @@ export default function StickyHeadTable() {
         fetchProduct();
     }, []);
 
-    const mappedProducts: Data[] = products.map((product) =>
-        createData(
-            product.name,
-            product.main_image,
-            product.stock,
-            product.status,
-            product.discount_price
-        )
-    );
-
     const handleChangePage = (_event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -107,66 +119,140 @@ export default function StickyHeadTable() {
     };
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {mappedProducts
-                            .slice(
-                                page * rowsPerPage,
-                                page * rowsPerPage + rowsPerPage
-                            )
-                            .map((row, index) => (
-                                <TableRow hover tabIndex={-1} key={index}>
-                                    {columns.map((column) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell
-                                                key={column.id}
-                                                align={column.align}
+        <>
+            <h1 className="text-black text-left text-3xl mt-6">Product List</h1>
+            <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: 5 }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        style={{
+                                            minWidth: column.minWidth
+                                        }}
+                                    >
+                                        {column.id === 'name' ? (
+                                            <span
+                                                style={{ marginLeft: '40px' }}
                                             >
-                                                {column.id === 'image' &&
-                                                typeof value === 'string' ? (
-                                                    <img
-                                                        src={value}
-                                                        alt="product"
-                                                        width={40}
-                                                        height={40}
-                                                    />
-                                                ) : (
-                                                    // fallback eller annan rendering
-                                                    value
-                                                )}
-                                            </TableCell>
-                                        );
-                                    })}
-                                </TableRow>
-                            ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={mappedProducts.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+                                                {column.label}
+                                            </span>
+                                        ) : (
+                                            column.label
+                                        )}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {products
+                                .slice(
+                                    page * rowsPerPage,
+                                    page * rowsPerPage + rowsPerPage
+                                )
+                                .map((product) => {
+                                    const row = createData(
+                                        product.name.toUpperCase(),
+                                        product.main_image,
+                                        product.stock,
+                                        product.status,
+                                        product.discount_price
+                                    );
+
+                                    return (
+                                        <TableRow
+                                            hover
+                                            tabIndex={-1}
+                                            key={product.id}
+                                        >
+                                            {columns.map((column) => {
+                                                const value = row[column.id];
+                                                return (
+                                                    <TableCell
+                                                        key={column.id}
+                                                        align={column.align}
+                                                    >
+                                                        {column.id ===
+                                                            'image' &&
+                                                        typeof value ===
+                                                            'string' ? (
+                                                            <img
+                                                                src={value}
+                                                                alt="product"
+                                                                width={50}
+                                                                height={50}
+                                                            />
+                                                        ) : column.id ===
+                                                          'name' ? (
+                                                            <div>
+                                                                <EditIcon
+                                                                    onClick={() =>
+                                                                        handleEditClick(
+                                                                            product
+                                                                        )
+                                                                    }
+                                                                    sx={{
+                                                                        fontSize:
+                                                                            'large',
+                                                                        marginRight:
+                                                                            '20px',
+                                                                        cursor: 'pointer',
+                                                                        color: 'black',
+                                                                        transition:
+                                                                            'color 0.3s ease',
+                                                                        '&:hover':
+                                                                            {
+                                                                                color: 'gray'
+                                                                            }
+                                                                    }}
+                                                                />
+                                                                {value}
+                                                            </div>
+                                                        ) : (
+                                                            value
+                                                        )}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    );
+                                })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={products.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+            <EditProductModal
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                product={selectedProduct}
+                onSave={handleSaveProduct}
             />
-        </Paper>
+            <div className="mt-[15%] ml-[90%]">
+                <Fab
+                    sx={{
+                        backgroundColor: 'black',
+                        '&:hover': {
+                            backgroundColor: '#ffb900'
+                        }
+                    }}
+                    aria-label="add"
+                    size="large"
+                >
+                    <AddIcon sx={{ color: 'white' }} />
+                </Fab>
+            </div>
+        </>
     );
 }

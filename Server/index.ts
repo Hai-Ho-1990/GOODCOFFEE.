@@ -13,9 +13,9 @@ const __filename = fileURLToPath(import.meta.url);
 //__dirname refererar till mappen som index.js befinner
 const __dirname = path.dirname(__filename);
 // Skapa en sökväg där innehåller en mapp 'uploads' vilken ligger i samma mapp som __dirname
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-console.log('__filename är:', __filename);
-console.log('__dirname är:', __dirname);
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+console.log('Server __dirname:', __dirname);
+console.log('Uploads path:', path.join(__dirname, 'uploads'));
 
 app.use(cors());
 app.use(express.json());

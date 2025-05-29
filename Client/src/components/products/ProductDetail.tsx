@@ -32,7 +32,7 @@ function ProductDetail({
         const fetchProduct = async () => {
             try {
                 const response = await axios.get(
-                    `${API_URL}/api/product/${id}`
+                    `${API_URL}/api/products/${id}`
                 );
                 setProduct(response.data);
             } catch (err) {
