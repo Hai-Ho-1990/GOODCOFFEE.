@@ -1,3 +1,11 @@
-const Users = () => <div>Hello Users</div>;
+import HistoryPerUserComponent from '../../components/admin/HistoryPerUserComponent';
+
+function Users() {
+    return (
+        <>
+            <HistoryPerUserComponent />
+        </>
+    );
+}
 
 export default Users;

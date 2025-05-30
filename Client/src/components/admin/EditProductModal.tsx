@@ -58,6 +58,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({
         if (!product) return;
 
         try {
+            // FormData tillåter att vi kan skicka blandad data tex text + fil till backend
             const formData = new FormData();
             formData.append('name', name);
             formData.append('stock', String(stock ?? 0));
