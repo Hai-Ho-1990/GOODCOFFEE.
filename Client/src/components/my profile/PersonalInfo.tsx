@@ -15,36 +15,38 @@ function PersonalInfo() {
     const [postcode, setPostcode] = useState('');
     const [city, setCity] = useState('');
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(
-                    `${API_URL}/api/profile`,
-                    // 'https://backend-8qj8.onrender.com/api/profile',
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(
+                `${API_URL}/api/profile`,
+                // 'https://backend-8qj8.onrender.com/api/profile',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
-                );
-                console.log(response.data);
-                setUsername(response.data.username);
-                setEmail(response.data.email);
-                setTelephone(response.data.telephone);
-                setAddress(response.data.address);
-                setPostcode(response.data.postcode);
-                setCity(response.data.city);
-            } catch (err) {
-                console.error('Felet är: ' + err);
-            }
-        };
+                }
+            );
+            console.log(response.data);
+            setUsername(response.data.username);
+            setEmail(response.data.email);
+            setTelephone(response.data.telephone);
+            setAddress(response.data.address);
+            setPostcode(response.data.postcode);
+            setCity(response.data.city);
+        } catch (err) {
+            console.error('Felet är: ' + err);
+        }
+    };
+
+    useEffect(() => {
         fetchUserData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.put(
+            await axios.put(
                 `${API_URL}/api/profile`,
                 // 'https://backend-8qj8.onrender.com/api/profile',
                 { username, email, telephone, address, postcode, city },
@@ -54,12 +56,13 @@ function PersonalInfo() {
                     }
                 }
             );
-            setUsername(response.data.username);
-            setEmail(response.data.email);
-            setTelephone(response.data.telephone);
-            setAddress(response.data.address);
-            setPostcode(response.data.postcode);
-            setCity(response.data.city);
+            await fetchUserData();
+            // setUsername(response.data.username);
+            // setEmail(response.data.email);
+            // setTelephone(response.data.telephone);
+            // setAddress(response.data.address);
+            // setPostcode(response.data.postcode);
+            // setCity(response.data.city);
         } catch (err) {
             console.error(err);
         }

@@ -16,8 +16,8 @@ function SaleSection() {
             </div>
 
             <p>
-                Plant your flag. Work with Elegant Seagulls for beautiful work
-                that delivers results.
+                Claim your cup. Enjoy our limited summer roast for refined
+                coffee moments.
             </p>
 
             <div className="sale-product h-[full]  flex  flex-wrap justify-center">

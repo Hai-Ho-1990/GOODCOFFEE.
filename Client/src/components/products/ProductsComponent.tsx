@@ -95,7 +95,6 @@ function ProductsComponent() {
                         }}
                     >
                         GO TO PRODUCT
-                        {/* {product.discount_price}$ */}
                     </Button>
                 </div>
             </div>

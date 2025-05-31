@@ -106,10 +106,13 @@ export default function CartDrawer({
     // i detta fall är acc en tom objekt och funkar som "tom ryggsäck" där
     // lagras varje objekt som funktionen har hittat från cartItems
     const [quantities, setQuantities] = useState<{ [key: string]: number }>(
-        cartItems.reduce((acc, item) => {
-            acc[item.name] = item.quantity;
-            return acc;
-        }, {} as { [key: string]: number })
+        cartItems.reduce(
+            (acc, item) => {
+                acc[item.name] = item.quantity;
+                return acc;
+            },
+            {} as { [key: string]: number }
+        )
     );
 
     const toggleDrawer = (newOpen: boolean) => () => {
@@ -162,7 +165,7 @@ export default function CartDrawer({
                         className="flex flex-row gap-4 pt-8 border-b-1 pb-8 w-[100%]"
                     >
                         <img
-                            src={item.main_image}
+                            src={`${API_URL}/uploads/${item.main_image}`}
                             alt={item.name}
                             className="w-[25%] bg-[#d0beaa] rounded-2xl"
                         />

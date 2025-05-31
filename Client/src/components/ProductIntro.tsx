@@ -19,18 +19,18 @@ function ProductIntro() {
                 <h1 className="text-[black] text-left ml-[5vw] mt-[5vw]">
                     . WHO WE ARE
                 </h1>
-                <h1 className="text-[black] text-left ml-[5vw] mt-[8vw] text-[3.3vw] font-bold leading-13">
-                    WELCOME TO THE GREATEST CITY IN THE WORLD. FEEL AT HOME IN
-                    PARIS.
+                <h1 className="text-[black] text-left ml-[5vw] mt-[5vw] text-[3.3vw] font-bold leading-13">
+                    WELCOME TO THE WORLD OF FINE COFFEE. SAVOUR EVERY CUP FROM
+                    STOCKHOLM.
                 </h1>
                 <p className="text-[black] text-left ml-[5vw] mt-[5vw] text-[1.2rem]">
-                    Nestled in the heart of Paris, we are a dedicated production
-                    services company, committed to crafting stunning visual
-                    experiences for clients from around the globe. Regardless
-                    the scale of your project, from an agile shoot in the
-                    streets of Paris to complex campaigns mixing real locations
-                    and studio work, we're here to make things easy for you.
-                    We’ll get it done smoothly and cost-effectively.
+                    Nestled in the heart of Stockholm, we are a boutique coffee
+                    brand devoted to delivering exceptional, hand-roasted beans
+                    to coffee lovers around the world. Whether you're brewing a
+                    quiet morning cup or curating a full café experience, we’re
+                    here to bring you refined flavors and uncompromising
+                    quality. Always smooth, always distinctive — and always
+                    roasted to perfection.
                 </p>
                 <div className="icons mt-[6.5rem] flex gap-5.5 justify-center">
                     <FontAwesomeIcon

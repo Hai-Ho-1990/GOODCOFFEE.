@@ -54,7 +54,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="copy-right-wrapper flex flex-row justify-center gap-[60%]">
+            <div className="copy-right-wrapper flex flex-row justify-center gap-[60%] mt-5">
                 <div className="copy-rights">
                     <p>Copyright 2025, All Right Reserved</p>
                 </div>
