@@ -64,6 +64,7 @@ function App() {
         setCartCount(updatedCart.reduce((sum, item) => sum + item.quantity, 0));
         setCartItems(updatedCart);
         //Förvandlar arrayen cartItems till sträng så att kunna lagras den i webbläsare
+        //localStorage accepterar endast strängar
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
 

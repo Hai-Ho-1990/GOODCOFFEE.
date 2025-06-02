@@ -1,6 +1,7 @@
 import Navbar from '../Navbar';
 import { Rating, Button } from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
+import { useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -27,6 +28,8 @@ function ProductDetail({
 }: ProductProps) {
     const [product, setProduct] = useState<Product | null>(null);
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -131,6 +134,12 @@ function ProductDetail({
                             <div className="mt-[20px] ">
                                 <Button
                                     onClick={() => {
+                                        const token =
+                                            localStorage.getItem('token');
+                                        if (!token) {
+                                            navigate('/login');
+                                            return;
+                                        }
                                         console.log(
                                             'Adding to cart product:',
                                             product
