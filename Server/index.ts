@@ -20,6 +20,10 @@ console.log('Uploads path:', path.join(__dirname, 'uploads'));
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req: Request, res: Response) => {
+    res.send('API is running...');
+});
+
 // Använd auth-routes
 app.use('/api', authRoutes);
 
