@@ -1,6 +1,7 @@
 import Hero from './Hero';
 import Navbar from './Navbar';
 import { Product } from '../types/Product';
+import DropdownMenuComponent from '../components/DropdownMenuComponent';
 
 interface headerProps {
     cartCount: number;
@@ -20,13 +21,24 @@ function Header({
     return (
         <>
             <section data-scroll-section className="h-[100vh] w-[100vw]">
-                <Navbar
-                    cartCount={cartCount}
-                    cartItems={cartItems}
-                    onRemoveItem={onRemoveItem}
-                    setCartCount={setCartCount}
-                    setCartItems={setCartItems}
-                />
+                <div className="hidden md:block">
+                    <Navbar
+                        cartCount={cartCount}
+                        cartItems={cartItems}
+                        onRemoveItem={onRemoveItem}
+                        setCartCount={setCartCount}
+                        setCartItems={setCartItems}
+                    />
+                </div>
+                <div className="block md:hidden z-10">
+                    <DropdownMenuComponent
+                        cartCount={cartCount}
+                        cartItems={cartItems}
+                        onRemoveItem={onRemoveItem}
+                        setCartCount={setCartCount}
+                        setCartItems={setCartItems}
+                    />
+                </div>
                 <Hero />
                 <div
                     // ref={heroRef}
@@ -34,7 +46,7 @@ function Header({
                     data-scroll
                     data-scroll-speed="3"
                 >
-                    <h1 className=" text-[7rem] text-[#d4a010] font-extrabold leading-25 w-[55%]">
+                    <h1 className=" text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] text-[#d4a010] font-extrabold md:leading-22 lg:leading-25 w-[55%] ">
                         PREMIUM COFFEE ROASTING. BASED IN STOCKHOLM
                     </h1>
                 </div>

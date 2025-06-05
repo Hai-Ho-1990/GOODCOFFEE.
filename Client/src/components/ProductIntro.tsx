@@ -9,21 +9,21 @@ function ProductIntro() {
     return (
         <section
             data-scroll-section
-            className="bg-[#D0BEAA] min-h-screen flex justify-between"
+            className="bg-[#D0BEAA] min-h-screen lg:flex justify-between"
         >
             <div
-                className="w-[50%] relative bottom-[8%]"
+                className="sm:w-[100%] lg:w-[50%] relative bottom-[8%]"
                 // data-scroll
                 // data-scroll-speed="2"
             >
-                <h1 className="text-[black] text-left ml-[5vw] mt-[5vw]">
+                <h1 className="text-[black] text-left ml-[5vw] pt-[5vw]">
                     . WHO WE ARE
                 </h1>
-                <h1 className="text-[black] text-left ml-[5vw] mt-[5vw] text-[3.3vw] font-bold leading-13">
+                <h1 className="text-[black] text-left ml-[5vw] mt-[5vw] text-[2.2rem] leading-9 lg:text-[3.3vw] font-bold lg:leading-13 w-[90%]">
                     WELCOME TO THE WORLD OF FINE COFFEE. SAVOUR EVERY CUP FROM
                     STOCKHOLM.
                 </h1>
-                <p className="text-[black] text-left ml-[5vw] mt-[5vw] text-[1.2rem]">
+                <p className="text-[black] text-left ml-[5vw] pt-[5vw] sm:text-[1.2rem] w-[90%]">
                     Nestled in the heart of Stockholm, we are a boutique coffee
                     brand devoted to delivering exceptional, hand-roasted beans
                     to coffee lovers around the world. Whether you're brewing a
@@ -32,7 +32,7 @@ function ProductIntro() {
                     quality. Always smooth, always distinctive — and always
                     roasted to perfection.
                 </p>
-                <div className="icons mt-[6.5rem] flex gap-5.5 justify-center">
+                <div className="icons mt-[3.5rem] lg:mt-[6.5rem] flex gap-5.5 justify-center">
                     <FontAwesomeIcon
                         icon={faInstagram}
                         className="text-[gray] text-[2rem] hover:text-[black] transition duration-300 "
@@ -50,18 +50,8 @@ function ProductIntro() {
             <img
                 src="./test-sale1.png"
                 alt=""
-                className="top-0 left-0  h-auto max-h-[100vh] w-[45vw] object-cover opacity-100"
+                className="top-0 left-0  h-auto max-h-[100vh] mt-[8vh] lg:mt-[0] lg:w-[45vw] object-cover opacity-100"
             />
-
-            {/* <video
-                className=" top-0 left-0  h-[100vh] w-[45vw] object-cover opacity-100"
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
-                <source src="./src/video/209419_tiny.mp4" type="video/mp4" />
-            </video> */}
         </section>
     );
 }
