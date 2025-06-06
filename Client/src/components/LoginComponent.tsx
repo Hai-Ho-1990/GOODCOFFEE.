@@ -73,9 +73,9 @@ function LoginComponent() {
     };
 
     return (
-        <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex mt-5">
-            <div className="login-page w-[50%] flex flex-col justify-center relative">
-                <h1 className="text-2xl pt-5 pb-20">Login</h1>
+        <section className="w-full lg:w-[80vw] xl:w-[50vw] bg-[#232628] h-[100vh] md:h-[80vh] rounded-xl opacity-80 flex md:mt-5 self-center">
+            <div className="login-page w-full  md:w-[50%]  flex flex-col justify-center  relative">
+                <h1 className="text-2xl lg:pt-5 pb-20">Login</h1>
                 <form
                     className="flex flex-col justify-center relative"
                     action="
@@ -169,7 +169,7 @@ function LoginComponent() {
                     Don't have an account ? Sign up.
                 </Link>
             </div>
-            <div className="flex justify-center items-center w-[50%] h-[80vh] relative">
+            <div className="md:flex justify-center items-center w-[50%] h-[80vh] relative hidden ">
                 <img
                     className=" object-cover rounded-xl w-[97%] h-[97%] "
                     src="./bild.jpg"

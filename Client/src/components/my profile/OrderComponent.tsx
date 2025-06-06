@@ -60,8 +60,22 @@ function Row(props: { row: ReturnType<typeof createData> }) {
     const [open, setOpen] = useState(false);
     return (
         <>
-            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                <TableCell>
+            <TableRow
+                sx={{ '& > *': { borderBottom: 'unset' } }}
+                onClick={() => {
+                    if (window.innerWidth < 600) {
+                        setOpen(!open);
+                    }
+                }}
+            >
+                <TableCell
+                    sx={{
+                        display: {
+                            xs: 'none',
+                            sm: 'table-cell'
+                        }
+                    }}
+                >
                     <IconButton
                         aria-label="expand row"
                         size="small"
@@ -77,24 +91,57 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                 <TableCell
                     component="th"
                     scope="row"
-                    sx={{ fontWeight: 'bold' }}
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: {
+                            xs: '0.7rem',
+                            sm: '0.9rem'
+                        }
+                    }}
                 >
                     {row.orderNumber}
                 </TableCell>
-                <TableCell align="center" sx={{ fontWeight: 'bold' }}>
+                <TableCell
+                    align="center"
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: {
+                            xs: '0.7rem',
+                            sm: '0.9rem'
+                        }
+                    }}
+                >
                     {row.orderDate}
                 </TableCell>
-                <TableCell align="center" sx={{ fontWeight: 'bold' }}>
+                <TableCell
+                    align="center"
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: {
+                            xs: '0.7rem',
+                            sm: '0.9rem'
+                        }
+                    }}
+                >
                     {row.totalPrice} $
                 </TableCell>
-                <TableCell align="center" sx={{ fontWeight: 'bold' }}>
+                <TableCell
+                    align="center"
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: {
+                            xs: '0.7rem',
+                            sm: '0.9rem'
+                        }
+                    }}
+                >
                     {row.orderStatus}
                 </TableCell>
             </TableRow>
 
             <TableRow>
                 <TableCell
-                    style={{ paddingBottom: 0, paddingTop: 0 }}
+                    style={{ paddingBottom: 0, paddingTop: 0, paddingLeft: 0 }}
                     colSpan={6}
                 >
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -102,13 +149,47 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Product</TableCell>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell align="right">
+                                        <TableCell
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '0.7rem',
+                                                    sm: '0.8rem'
+                                                }
+                                            }}
+                                        >
+                                            Product
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '0.7rem',
+                                                    sm: '0.8rem'
+                                                }
+                                            }}
+                                        >
+                                            Name
+                                        </TableCell>
+                                        <TableCell
+                                            align="right"
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '0.7rem',
+                                                    sm: '0.8rem'
+                                                }
+                                            }}
+                                        >
                                             Quantity
                                         </TableCell>
 
-                                        <TableCell align="right">
+                                        <TableCell
+                                            align="right"
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '0.7rem',
+                                                    sm: '0.8rem'
+                                                }
+                                            }}
+                                        >
                                             Total price ($)
                                         </TableCell>
                                     </TableRow>
@@ -124,11 +205,16 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                                                 <img
                                                     src={item.main_image}
                                                     alt=""
-                                                    className="w-[20%] h-[80px] object-cover"
+                                                    className="xs:w-[20%] h-[80px] object-cover"
                                                 />
                                             </TableCell>
                                             <TableCell
-                                                sx={{ fontWeight: 'bold' }}
+                                                sx={{
+                                                    fontWeight: 'bold',
+                                                    fontSize: {
+                                                        xs: '0.8rem'
+                                                    }
+                                                }}
                                             >
                                                 {item.product_name.toUpperCase()}
                                             </TableCell>
@@ -179,7 +265,7 @@ function OrderComponent() {
                 const mappedRows = fetchedOrders.map((order: OrderFromApi) =>
                     createData(
                         order.id,
-                        new Date(order.order_date).toUTCString(),
+                        new Date(order.order_date).toDateString(),
                         parseFloat(order.total_price),
                         order.status,
                         order.items
@@ -200,11 +286,57 @@ function OrderComponent() {
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>
-                            <TableCell />
-                            <TableCell>Order Number</TableCell>
-                            <TableCell align="center">Order Date</TableCell>
-                            <TableCell align="center">Total Price</TableCell>
-                            <TableCell align="center">Order Status</TableCell>
+                            <TableCell
+                                sx={{
+                                    display: {
+                                        xs: 'none',
+                                        sm: 'table-cell'
+                                    }
+                                }}
+                            />
+                            <TableCell
+                                sx={{
+                                    fontSize: {
+                                        xs: '0.7rem',
+                                        sm: '0.8rem'
+                                    }
+                                }}
+                            >
+                                Order Number
+                            </TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    fontSize: {
+                                        xs: '0.7rem',
+                                        sm: '0.8rem'
+                                    }
+                                }}
+                            >
+                                Order Date
+                            </TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    fontSize: {
+                                        xs: '0.7rem',
+                                        sm: '0.8rem'
+                                    }
+                                }}
+                            >
+                                Total Price
+                            </TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    fontSize: {
+                                        xs: '0.7rem',
+                                        sm: '0.8rem'
+                                    }
+                                }}
+                            >
+                                Order Status
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody className="bg-gray-100">

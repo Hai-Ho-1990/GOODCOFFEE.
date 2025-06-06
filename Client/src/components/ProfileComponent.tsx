@@ -5,6 +5,7 @@ import OrderComponent from './my profile/OrderComponent';
 import React from 'react';
 import { Product } from '../types/Product';
 import { useAuth } from '../context/AuthContext';
+import DropdownMenuComponent from '../components/DropdownMenuComponent';
 
 //
 
@@ -79,19 +80,30 @@ function ProfileComponent({
     return (
         <section
             data-scroll-section
-            className="h-[100vh] w-[100vw] flex flex-col items-center"
+            className="h-[100vh] w-[100vw] flex flex-col "
         >
-            <Navbar
-                cartCount={cartCount}
-                cartItems={cartItems}
-                onRemoveItem={onRemoveItem}
-                setCartCount={setCartCount}
-                setCartItems={setCartItems}
-            />
+            <div className="hidden md:block">
+                <Navbar
+                    cartCount={cartCount}
+                    cartItems={cartItems}
+                    onRemoveItem={onRemoveItem}
+                    setCartCount={setCartCount}
+                    setCartItems={setCartItems}
+                />
+            </div>
+            <div className="block md:hidden z-10">
+                <DropdownMenuComponent
+                    cartCount={cartCount}
+                    cartItems={cartItems}
+                    onRemoveItem={onRemoveItem}
+                    setCartCount={setCartCount}
+                    setCartItems={setCartItems}
+                />
+            </div>
 
             <div className="h-[75vh] w-full mt-[56px] flex flex-row justify-center">
-                <div className=" w-[15vw] h-[100%] bg-[#232628] flex flex-col rounded-s-4xl  mr-[-100px]">
-                    <ol className="flex flex-col  pt-[40%] w-[10vw] text-[0.9vw] ">
+                <div className="w-[25%] md:w-[15vw] lg:w-[23vw] xl:w-[15vw] h-[100%] bg-[#232628] flex flex-col rounded-s-4xl  mr-[-50px]">
+                    <ol className="flex flex-col  pt-[40%] w-[20vw] text-[0.9vw] ">
                         <li>
                             <ListItemButton
                                 selected={selectedIndex === 0}
@@ -107,7 +119,16 @@ function ProfileComponent({
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Profile" />
+                                <ListItemText
+                                    primary="Profile"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -121,11 +142,24 @@ function ProfileComponent({
                                     <LocalGroceryStoreIcon
                                         sx={{
                                             color: 'white',
-                                            fontSize: 'large'
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Orders" />
+                                <ListItemText
+                                    primary="Orders"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -139,11 +173,24 @@ function ProfileComponent({
                                     <WorkHistoryIcon
                                         sx={{
                                             color: 'white',
-                                            fontSize: 'large'
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="History" />
+                                <ListItemText
+                                    primary="History"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -157,11 +204,24 @@ function ProfileComponent({
                                     <FavoriteIcon
                                         sx={{
                                             color: 'white',
-                                            fontSize: 'large'
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Favorite" />
+                                <ListItemText
+                                    primary="Favorite"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -175,11 +235,24 @@ function ProfileComponent({
                                     <NotificationsIcon
                                         sx={{
                                             color: 'white',
-                                            fontSize: 'large'
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Notifications" />
+                                <ListItemText
+                                    primary="Notifications"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                     </ol>
@@ -199,7 +272,16 @@ function ProfileComponent({
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Settings" />
+                                <ListItemText
+                                    primary="Settings"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -214,16 +296,29 @@ function ProfileComponent({
                                     <LogoutIcon
                                         sx={{
                                             color: 'white',
-                                            fontSize: 'large'
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
                                         }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText primary="Log out" />
+                                <ListItemText
+                                    primary="Log out"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                     </ol>
                 </div>
-                <div className="w-[50vw] bg-[white] rounded-e-4xl z-10 flex flex-col">
+                <div className="w-[88%]  xl:w-[50vw] bg-[white] rounded-e-4xl z-10 flex flex-col">
                     {renderContent()}
                 </div>
             </div>

@@ -57,25 +57,19 @@ function PersonalInfo() {
                 }
             );
             await fetchUserData();
-            // setUsername(response.data.username);
-            // setEmail(response.data.email);
-            // setTelephone(response.data.telephone);
-            // setAddress(response.data.address);
-            // setPostcode(response.data.postcode);
-            // setCity(response.data.city);
         } catch (err) {
             console.error(err);
         }
     };
 
     return (
-        <section className="flex flex-col items-center mt-[50px]">
-            <h1 className="self-start ml-[10%] mt-[5%] text-2xl text-black">
+        <section className="flex flex-col items-center mt-[20px] lg:mt-[50px]">
+            <h1 className="self-start ml-[10%] mt-[5%] lg:text-2xl text-black hidden md:block">
                 My Profile
             </h1>
             <form action="" onSubmit={handleSubmit}>
-                <div className="flex flex-wrap w-[100%] mt-[3%] justify-around">
-                    <div className="w-[35%] p-6 ">
+                <div className="md:flex md:flex-wrap w-[55vw] md:w-[100%] mt-[3%] md:justify-around">
+                    <div className=" md:w-[35%]  md:p-6 ">
                         <TextField
                             required
                             id="filled-required"
@@ -84,9 +78,18 @@ function PersonalInfo() {
                             fullWidth
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            InputProps={{
+                                sx: {
+                                    fontSize: {
+                                        xs: '14px',
+
+                                        md: '16px'
+                                    }
+                                }
+                            }}
                         />
                     </div>
-                    <div className="w-[35%] p-6 ">
+                    <div className="md:w-[35%] mt-5 md:mt-0 md:p-6 ">
                         <TextField
                             required
                             id="filled-required"
@@ -95,9 +98,20 @@ function PersonalInfo() {
                             fullWidth
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        fontSize: {
+                                            xs: '14px',
+
+                                            md: '16px'
+                                        }
+                                    }
+                                }
+                            }}
                         />
                     </div>
-                    <div className="w-[35%] p-6 ">
+                    <div className="md:w-[35%] mt-5 md:mt-0 md:p-6 ">
                         <TextField
                             id="filled-required"
                             label="Telephone"
@@ -105,9 +119,20 @@ function PersonalInfo() {
                             fullWidth
                             value={telephone}
                             onChange={(e) => setTelephone(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        fontSize: {
+                                            xs: '14px',
+
+                                            md: '16px'
+                                        }
+                                    }
+                                }
+                            }}
                         />
                     </div>
-                    <div className="w-[35%] p-6 ">
+                    <div className="md:w-[35%] mt-5 md:mt-0 md:p-6 ">
                         <TextField
                             id="filled-required"
                             label="Address"
@@ -115,9 +140,20 @@ function PersonalInfo() {
                             fullWidth
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        fontSize: {
+                                            xs: '14px',
+
+                                            md: '16px'
+                                        }
+                                    }
+                                }
+                            }}
                         />
                     </div>
-                    <div className="w-[35%] p-6 ">
+                    <div className="md:w-[35%] mt-5 md:mt-0 md:p-6 ">
                         <TextField
                             id="filled-required"
                             label="Post Code"
@@ -125,9 +161,20 @@ function PersonalInfo() {
                             fullWidth
                             value={postcode}
                             onChange={(e) => setPostcode(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        fontSize: {
+                                            xs: '14px',
+
+                                            md: '16px'
+                                        }
+                                    }
+                                }
+                            }}
                         />
                     </div>
-                    <div className="w-[35%] p-6 ">
+                    <div className="md:w-[35%] mt-5 md:mt-0 md:p-6 ">
                         <TextField
                             id="filled-required"
                             label="City"
@@ -135,10 +182,21 @@ function PersonalInfo() {
                             fullWidth
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        fontSize: {
+                                            xs: '14px',
+
+                                            md: '16px'
+                                        }
+                                    }
+                                }
+                            }}
                         />
                     </div>
                 </div>
-                <div className="mt-[5%] w-[100%]">
+                <div className="mt-[20%] md:mt-[5%] w-[100%]">
                     <Button
                         type="submit"
                         // variant="standard"
@@ -148,7 +206,10 @@ function PersonalInfo() {
                             backgroundColor: '#ffb900',
                             color: 'black',
                             padding: '12px 24px',
-                            fontSize: '12px',
+                            fontSize: {
+                                xs: '10px',
+                                lg: '12px'
+                            },
                             fontWeight: 'bold',
 
                             borderRadius: '40px',

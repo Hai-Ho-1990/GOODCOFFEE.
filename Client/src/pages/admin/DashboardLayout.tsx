@@ -48,16 +48,9 @@ function AdminDashboardLayout() {
 
     return (
         <section className="h-[100vh] w-[100vw] flex flex-col items-center">
-            {/* <Navbar
-                cartCount={cartCount}
-                cartItems={cartItems}
-                onRemoveItem={onRemoveItem}
-                setCartCount={setCartCount}
-                setCartItems={setCartItems}
-            /> */}
             <div className="h-[100vh] w-full  flex flex-row justify-center">
                 {/* SIDOMENY */}
-                <div className="w-[15vw] h%-full bg-[#1f1f1f] flex flex-col  text-white">
+                <div className="w-[17vw] h%-full bg-[#1f1f1f] flex flex-col  text-white">
                     <div className="pt-[15%]">
                         <Logo />
                     </div>
@@ -69,9 +62,27 @@ function AdminDashboardLayout() {
                                 onClick={(e) => handleListItemClick(e, 0)}
                             >
                                 <ListItemIcon>
-                                    <StoreIcon sx={{ color: 'white' }} />
+                                    <StoreIcon
+                                        sx={{
+                                            color: 'white',
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
+                                        }}
+                                    />
                                 </ListItemIcon>
-                                <ListItemText primary="Products" />
+                                <ListItemText
+                                    primary="Products"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -80,9 +91,27 @@ function AdminDashboardLayout() {
                                 onClick={(e) => handleListItemClick(e, 1)}
                             >
                                 <ListItemIcon>
-                                    <GroupIcon sx={{ color: 'white' }} />
+                                    <GroupIcon
+                                        sx={{
+                                            color: 'white',
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
+                                        }}
+                                    />
                                 </ListItemIcon>
-                                <ListItemText primary="Users" />
+                                <ListItemText
+                                    primary="Users"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -91,9 +120,27 @@ function AdminDashboardLayout() {
                                 onClick={(e) => handleListItemClick(e, 2)}
                             >
                                 <ListItemIcon>
-                                    <ShoppingCartIcon sx={{ color: 'white' }} />
+                                    <ShoppingCartIcon
+                                        sx={{
+                                            color: 'white',
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
+                                        }}
+                                    />
                                 </ListItemIcon>
-                                <ListItemText primary="Orders" />
+                                <ListItemText
+                                    primary="Orders"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                         <li>
@@ -102,18 +149,54 @@ function AdminDashboardLayout() {
                                 onClick={(e) => handleListItemClick(e, 3)}
                             >
                                 <ListItemIcon>
-                                    <SettingsIcon sx={{ color: 'white' }} />
+                                    <SettingsIcon
+                                        sx={{
+                                            color: 'white',
+                                            fontSize: 'large',
+                                            marginTop: {
+                                                xs: '10px',
+                                                md: '0'
+                                            }
+                                        }}
+                                    />
                                 </ListItemIcon>
-                                <ListItemText primary="Settings" />
+                                <ListItemText
+                                    primary="Settings"
+                                    sx={{
+                                        display: {
+                                            xs: 'none',
+
+                                            md: 'block'
+                                        }
+                                    }}
+                                />
                             </ListItemButton>
                         </li>
                     </ol>
                     <div className="mt-auto pb-6">
                         <ListItemButton onClick={handleLogout}>
                             <ListItemIcon>
-                                <LogoutIcon sx={{ color: 'white' }} />
+                                <LogoutIcon
+                                    sx={{
+                                        color: 'white',
+                                        fontSize: 'large',
+                                        marginTop: {
+                                            xs: '10px',
+                                            md: '0'
+                                        }
+                                    }}
+                                />
                             </ListItemIcon>
-                            <ListItemText primary="Logga ut" />
+                            <ListItemText
+                                primary="Logga ut"
+                                sx={{
+                                    display: {
+                                        xs: 'none',
+
+                                        md: 'block'
+                                    }
+                                }}
+                            />
                         </ListItemButton>
                     </div>
                 </div>
