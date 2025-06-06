@@ -39,7 +39,7 @@ function Newsletter() {
                 <div
                     data-scroll
                     data-scroll-speed="1"
-                    className=" xl:ml-[58%]   mt-[5%] lg:mt-[50%] xl:mt-[12%] flex flex-row justify-center w-[90%] sm:w-[100%] xl:w-[80%]"
+                    className=" xl:ml-[40%]  mt-[5%] lg:mt-[50%] xl:mt-[12%] flex flex-row justify-center w-[90%] sm:w-[100%] xl:w-[80%]"
                 >
                     <Input
                         className="pl-[5%] relative "

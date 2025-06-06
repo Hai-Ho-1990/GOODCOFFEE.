@@ -77,7 +77,7 @@ function ProductDetail({
                             alt=""
                             className=" xl:w-[50vw] h-[35vh] md:h-[45vh] xl:h-[75vh] bg-[#c4a88b] object-cover"
                         />
-                        <div className="product-detail w-[100%]  xl:w-[50vw] h-[60vh] xl:h-[100%] md:text-left md:pt-5 xl:pl-[8rem]  bg-[#d4cec2] md:flex md:flex-col md:items-center xl:items-start">
+                        <div className="product-detail w-[100%]  xl:w-[50vw] h-[60vh] xl:h-[75vh] md:text-left md:pt-5 xl:pt-0 xl:pl-[8rem]  bg-[#d4cec2] md:flex md:flex-col md:items-center xl:items-start">
                             <div className="leading-[1.2] xl:mb-[5%] w-full flex flex-col items-center xl:items-start lg:mt-[6%]">
                                 <p className="bg-[black] w-[30px] xl:w-[50px] h-[25px] xl:h-[35px] rounded-[5px] xl:mt-[10%] pl-0.5 xl:pl-1.5 pt-2 text-[0.65rem] xl:text-[1rem] text-center lg:text-left hidden xl:block">
                                     -50%
