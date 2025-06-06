@@ -12,44 +12,6 @@ function SigninComponent() {
     const navigate = useNavigate();
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-    // function useValidateInput(
-    //     initialValue: string,
-    //     //en funktion som validerar fältets innehåll och returnera:
-    //     // en sträng om det är ogiltigt
-    //     // null om allt är rätt
-    //     validate: (value: string) => string | null
-    // ) {
-    //     //Skapa en "mall" som kan appliceras på alla fält
-    //     const [value, setValue] = useState(initialValue);
-    //     const [error, setError] = useState(false);
-    //     const [helperText, setHelperText] = useState('');
-
-    //     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //         const result = e.target.value;
-    //         setValue(result);
-    //         // Resultat av validerings funktion lagars i validationMessage
-    //         const validationMessage = validate(result);
-    //         // Om det finns error ska meddelande lagrras i textHelper
-    //         if (validationMessage) {
-    //             setError(true);
-    //             setHelperText(validationMessage);
-    //         } else {
-    //             setError(false);
-    //             setHelperText('');
-    //         }
-    //     };
-    //     // returna allt som behövs för att kontrollera
-    //     return {
-    //         value,
-    //         onChange,
-    //         error,
-    //         helperText,
-    //         setValue,
-    //         setError,
-    //         setHelperText
-    //     };
-    // }
-
     const usernameInput = useValidateInput('', (result) => {
         if (result.length < 3) return 'Username has to be atleast 3 characters';
         if (result === '') return null;
@@ -81,43 +43,6 @@ function SigninComponent() {
             return null;
         }
     });
-
-    // useEffect(() => {
-
-    //     });
-    //     //     if (password !== repeatPassword) {
-    //     //         setErrorRepeatPassword(true);
-    //     //         setHelperTextRepeatPassword(
-    //     //             'Repeat password does not match your password.'
-    //     //         );
-    //     //     } else {
-    //     //         setErrorRepeatPassword(false);
-    //     //         setHelperTextRepeatPassword('');
-    //     //     }
-    //     // }, [password, repeatPassword]);
-
-    //     //State för email validering
-
-    //     // const [email, setEmail] = useState('');
-    //     // const [errorEmail, setErrorEmail] = useState(false);
-    //     // const [helperTextEmail, setHelperTextEmail] = useState('');
-
-    //     // const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     //     const value = e.target.value;
-    //     //     setEmail(value);
-
-    //     //     if (!emailRegex.test(value)) {
-    //     //         setErrorEmail(true);
-    //     //         setHelperTextEmail('Invalid email format');
-    //     //     } else {
-    //     //         setErrorEmail(false);
-    //     //         setHelperTextEmail('');
-    //     //     }
-    //     //     if (value === '') {
-    //     //         setErrorEmail(false);
-    //     //         setHelperTextEmail('');
-    //     //     }
-    // });
 
     // Hanterar submit för att skicka till backend
     const handleSubmit = async (e: React.FormEvent) => {

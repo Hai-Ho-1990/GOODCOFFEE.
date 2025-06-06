@@ -1,4 +1,3 @@
-// import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
 import { Button } from '@mui/material';
 import Input from '@mui/material/Input';
 function Newsletter() {
@@ -61,14 +60,14 @@ function Newsletter() {
                                 color: 'white'
                             },
                             '&:before': {
-                                borderBottom: '1px solid white', // default underline
+                                borderBottom: '1px solid white',
                                 left: '10%'
                             },
                             '&:after': {
-                                borderBottom: '1px solid white' // active underline
+                                borderBottom: '1px solid white'
                             },
                             '&:hover:not(.Mui-disabled):before': {
-                                borderBottom: '1px solid white' // hover underline
+                                borderBottom: '1px solid white'
                             }
                         }}
                     />

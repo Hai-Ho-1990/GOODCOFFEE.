@@ -93,9 +93,9 @@ function ProductDetail({
                                         className="self-start"
                                         sx={{
                                             fontSize: {
-                                                xs: '1.2rem', // mobil
-                                                sm: '1.8rem', // liten skärm
-                                                md: '2rem' // mellan
+                                                xs: '1.2rem',
+                                                sm: '1.8rem',
+                                                md: '2rem'
                                             }
                                         }}
                                     />

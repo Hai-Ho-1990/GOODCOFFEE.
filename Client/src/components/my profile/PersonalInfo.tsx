@@ -19,7 +19,7 @@ function PersonalInfo() {
         try {
             const response = await axios.get(
                 `${API_URL}/api/profile`,
-                // 'https://backend-8qj8.onrender.com/api/profile',
+
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -48,7 +48,7 @@ function PersonalInfo() {
         try {
             await axios.put(
                 `${API_URL}/api/profile`,
-                // 'https://backend-8qj8.onrender.com/api/profile',
+
                 { username, email, telephone, address, postcode, city },
                 {
                     headers: {

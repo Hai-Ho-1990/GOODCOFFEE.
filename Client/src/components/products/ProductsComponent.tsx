@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-// import Rating from '@mui/material/Rating';
-// import Button from '@mui/material/Button';
+
 const API_URL = import.meta.env.VITE_API_URL;
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -74,9 +73,9 @@ function ProductsComponent() {
                     precision={0.5}
                     sx={{
                         fontSize: {
-                            xs: '1rem', // mobil
-                            sm: '1.5rem', // liten skärm
-                            md: '2.5rem' // mellan
+                            xs: '1rem',
+                            sm: '1.5rem',
+                            md: '2.5rem'
                         }
                     }}
                 />

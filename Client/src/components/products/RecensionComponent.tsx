@@ -19,9 +19,9 @@ function RecensionComponent() {
                             className="mt-5"
                             sx={{
                                 fontSize: {
-                                    xs: '1rem', // mobil
-                                    sm: '1.5rem', // liten skärm
-                                    md: '2.5rem' // mellan
+                                    xs: '1rem',
+                                    sm: '1.5rem',
+                                    md: '2.5rem'
                                 }
                             }}
                         />
@@ -44,9 +44,9 @@ function RecensionComponent() {
                             className="mt-5"
                             sx={{
                                 fontSize: {
-                                    xs: '1rem', // mobil
-                                    sm: '1.5rem', // liten skärm
-                                    md: '2.5rem' // mellan
+                                    xs: '1rem',
+                                    sm: '1.5rem',
+                                    md: '2.5rem'
                                 }
                             }}
                         />
@@ -69,9 +69,9 @@ function RecensionComponent() {
                             className="mt-5"
                             sx={{
                                 fontSize: {
-                                    xs: '1rem', // mobil
-                                    sm: '1.5rem', // liten skärm
-                                    md: '2.5rem' // mellan
+                                    xs: '1rem',
+                                    sm: '1.5rem',
+                                    md: '2.5rem'
                                 }
                             }}
                         />
