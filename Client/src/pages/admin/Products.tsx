@@ -239,7 +239,7 @@ export default function StickyHeadTable() {
                 product={selectedProduct}
                 onSave={handleSaveProduct}
             />
-            <div className="mt-[15%] ml-[90%]">
+            <div className="mt-[15%] sm:ml-[90%]">
                 <Fab
                     sx={{
                         backgroundColor: 'black',
