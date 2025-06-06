@@ -33,17 +33,20 @@ function ProductsComponent() {
 
     const renderAllProducts = () => {
         return products.map((product) => (
-            <div key={product.id} className="w-[25%] mt-[6rem]">
+            <div
+                key={product.id}
+                className="w-[50%] xl:w-[25%] mt-[3rem] md:mt-[7rem] lg:mt-[6rem]"
+            >
                 <img
                     onClick={() => handleProductClick(product.id)}
                     src={`${API_URL}/uploads/${product.main_image}`}
                     alt=""
                     className="w-[100%] h-[100%] scale-[1.2] object-cover hover:scale-[1.35] transform transition-transform duration-500 ease-in-out"
                 />
-                <h2 className="text-black mt-[7%] text-[1.2rem] font-bold">
+                <h2 className="text-black  lg:mt-[7%] text-[0.8rem] lg:text-[1.2rem] font-bold">
                     {product.name.toUpperCase()}
                 </h2>
-                <h2 className="text-black text-xl">
+                <h2 className="text-black lg:text-xl">
                     {product.discount_price}$
                 </h2>
             </div>
@@ -53,26 +56,36 @@ function ProductsComponent() {
     const renderSingleProduct = (product: Product) => (
         <div
             key={product.id}
-            className=" w-[100%] overflow-hidden flex flex-row items-center"
+            className=" w-[100%] overflow-hidden flex flex-col xl:flex-row items-center pt-[10%]  xl:pt-0"
         >
             <img
                 src={`${API_URL}/uploads/${product.main_image}`}
                 alt=""
-                className="w-[50%] h-[50%] object-cover scale-[1.2]"
+                className="w-[80%] sm:w-[100%] xl:w-[50%] h-[50%] object-cover scale-[1.2]"
             />
             <div className="flex flex-col items-center">
-                <h1 className="text-black mt-5 text-[2.5rem] font-bold">
+                <h1 className="text-black mt-5 sm:text-[1.5rem] xl:text-[2.5rem] font-bold">
                     {product.name.toUpperCase()}
                 </h1>
+
                 <Rating
                     name="half-rating"
                     defaultValue={4.5}
                     precision={0.5}
-                    size="large"
+                    sx={{
+                        fontSize: {
+                            xs: '1rem', // mobil
+                            sm: '1.5rem', // liten skärm
+                            md: '2.5rem' // mellan
+                        }
+                    }}
                 />
-                <p className="w-[60%] pt-5 text-black">{product.description}</p>
 
-                <div className="mt-[50px] ">
+                <p className="w-[80%] lg:w-[60%] pt-5 text-black text-[0.6rem] sm:text-[0.8rem] lg:text-[1rem]">
+                    {product.description}
+                </p>
+
+                <div className="mt-[50px]">
                     <Button
                         onClick={() => {
                             console.log('Clicked product id:', product.id);
@@ -85,9 +98,17 @@ function ProductsComponent() {
                             backgroundColor: 'black',
                             color: 'white',
                             padding: '12px 24px',
-                            fontSize: '16px',
+                            fontSize: {
+                                xs: '10px',
+                                sm: '12px',
+                                lg: '16px'
+                            },
                             fontWeight: 'bold',
-                            width: '20vw',
+                            width: {
+                                xs: '50vw',
+                                md: '30vw',
+                                xl: '20vw'
+                            },
 
                             '&:hover': {
                                 backgroundColor: 'orange'
@@ -138,11 +159,11 @@ function ProductsComponent() {
                 className="bg-[#c4a88b] h-[100vh] w-[100vw]"
             >
                 <div className="products">
-                    <div className="flex flex-row justify-between pt-[3vw]">
+                    <div className="flex flex-col lg:flex-row justify-between pt-[2.2rem] lg:pt-[3vw]">
                         <h1 className="text-[black] text-left ml-[5vw] ">
                             . OUR PRODUCTS
                         </h1>
-                        <div className="flex flex-row justify-between pr-[6vw]">
+                        <div className="flex flex-row justify-between pr-[6vw] text-[0.85rem] lg:text-[1rem] pt-[1.5rem] lg:pt-0">
                             {[
                                 'ALL',
                                 'SMOOTHER',

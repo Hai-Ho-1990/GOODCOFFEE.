@@ -11,15 +11,15 @@ function Footer() {
                 GOODCOFFEE.
             </h1>
             <div className="flex flex-col lg:flex-row justify-around pt-[3rem] lg:pt-[9rem]">
-                <div className="flex lg:flex-col self-center lg:self-start lg:items-start lg:leading-10 lg:text-[1.5rem] gap-2.5 lg:gap-0">
+                <div className="flex lg:flex-col self-center lg:self-start lg:items-start lg:leading-10  md:text-[1.5rem] gap-2.5 lg:gap-0 lg:pl-10 xl:pl-0">
                     <a href="">SHOP</a>
                     <a href="">ABOUT</a>
                     <a href="">JOURNAL</a>
                     <a href="">CARRER</a>
                     <a href="">LOGIN</a>
                 </div>
-                <div className="social-wrapper">
-                    <p className="w-[100%] sm:w-[90%] lg:w-[50%] lg:text-left pt-[20%] sm:pl-[10%] lg:pt-0 text-[0.8rem] sm:text-[1rem] lg:text-[1rem]">
+                <div className="social-wrapper lg:pl-[10%]">
+                    <p className="w-[100%] sm:w-[90%] lg:w-[50%] lg:text-left pt-[20%] sm:pl-[10%] lg:pl-0 lg:pt-0 text-[0.8rem] sm:text-[1rem] lg:text-[1rem]">
                         We are a specialty coffee bean e-commerce store based in
                         Sweden, delivering fresh beans nationwide – from Malmö
                         to Kiruna!
@@ -39,22 +39,28 @@ function Footer() {
                         />
                     </div>
                 </div>
-                <div className="h-[40vh] sm:h-[47vh] lg:h-[47vh]">
+                <div className="h-[40vh] sm:h-[47vh] lg:h-[47vh] lg:pr-10 xl:pr-0">
                     <div className="address-wrapper lg:justify-items-start pt-7 sm:pt-[20%] lg:pt-0 ">
-                        <p>ADDRESS</p>
-                        <p>Nekvagen 41 , Spanga, Stockholm</p>
+                        <p className="text-[0.8rem] sm:text-[1rem]">ADDRESS</p>
+                        <p className="lg:text-left text-[0.8rem] sm:text-[1rem]">
+                            Nekvagen 41 , Spanga, Stockholm
+                        </p>
                     </div>
                     <div className="phone-wrapper lg:justify-items-start pt-7">
-                        <p>PHONE</p>
-                        <p>0046-873-2983</p>
+                        <p className="text-[0.8rem] sm:text-[1rem]">PHONE</p>
+                        <p className="text-[0.8rem] sm:text-[1rem]">
+                            0046-873-2983
+                        </p>
                     </div>
                     <div className="email-wrapper lg:justify-items-start pt-7">
-                        <p>EMAIL</p>
-                        <p>hello@goodcoffee.com</p>
+                        <p className="text-[0.8rem] sm:text-[1rem]">EMAIL</p>
+                        <p className="text-[0.8rem] sm:text-[1rem]">
+                            hello@goodcoffee.com
+                        </p>
                     </div>
                 </div>
             </div>
-            <div className="copy-right-wrapper flex flex-col lg:flex-row justify-center text-[0.7rem] lg:text-[1rem] gap-[20%] lg:gap-[60%] lg:mt-5 ">
+            <div className="copy-right-wrapper flex flex-col lg:flex-row justify-center text-[0.7rem] lg:text-[1rem] gap-[20%]  lg:gap-[40%] xl:gap-[60%] lg:mt-[23%] xl:mt-5 ">
                 <div className="copy-rights">
                     <p>Copyright 2025, All Right Reserved</p>
                 </div>

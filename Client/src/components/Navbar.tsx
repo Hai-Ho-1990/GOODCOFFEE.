@@ -25,7 +25,7 @@ export default function Navbar({
     const { isLoggedIn, isAdmin } = useAuth();
 
     return (
-        <div className="container-navbar flex items-center justify-around w-[100%] pt-4">
+        <div className="container-navbar flex items-center justify-around w-[100%] pt-4 ">
             <Logo />
             <nav className="navbar-links flex gap-15 text-lg z-10">
                 <Link to="/">Home</Link>
@@ -33,7 +33,7 @@ export default function Navbar({
                 <Link to="/about">About Oss</Link>
                 <Link to="/contact">Contact</Link>
             </nav>
-            <div className="z-1 flex flex-row gap-7 items-center">
+            <div className="z-1 flex flex-row sm:gap-3 lg:gap-7 items-center">
                 <Link
                     to={
                         isLoggedIn

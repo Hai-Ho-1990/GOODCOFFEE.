@@ -3,6 +3,7 @@ import Drawer from '@mui/material/Drawer';
 import { IconButton, Button, Badge } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import CloseIcon from '@mui/icons-material/Close';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 const API_URL = import.meta.env.VITE_API_URL;
 import axios from 'axios';
@@ -155,9 +156,14 @@ export default function CartDrawer({
         setQuantities(initialQuantities);
     }, [cartItems]);
     const DrawerList = (
-        <div className="bg-[#ffff] w-[30vw] h-full flex flex-col justify-between">
+        <div className="bg-[#ffff] w-[100vw] lg:w-[50vw] xl:w-[30vw] h-full flex flex-col justify-between">
             <div className="ml-[5%] w-[90%]">
-                <h2 className="border-b-1 pb-4 pt-4">YOUR CART</h2>
+                <div className="flex justify-end pt-4">
+                    <IconButton onClick={() => setOpen(false)}>
+                        <CloseIcon />
+                    </IconButton>
+                </div>
+                <h2 className="border-b-1 pb-4 ">YOUR CART</h2>
                 {cartItems.length === 0 && <p>Your cart is empty.</p>}
                 {cartItems.map((item) => (
                     <div

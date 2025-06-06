@@ -127,8 +127,30 @@ function App() {
                                     />
                                 }
                             />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signin" element={<Signin />} />
+                            <Route
+                                path="/login"
+                                element={
+                                    <Login
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/signin"
+                                element={
+                                    <Signin
+                                        cartCount={cartCount}
+                                        cartItems={cartItems}
+                                        onRemoveItem={handleRemoveItem}
+                                        setCartCount={setCartCount}
+                                        setCartItems={setCartItems}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/profile"
                                 element={

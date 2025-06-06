@@ -21,14 +21,14 @@ function Newsletter() {
                 <h1
                     data-scroll
                     data-scroll-speed="1"
-                    className="logo text-[550%] font-extrabold text-[#d4a010] z-1 pt-[4rem] text-left pl-[5%] relative"
+                    className="logo text-[3rem] lg:text-[550%] font-extrabold text-[#d4a010] z-1 pt-[4rem]  lg:text-left lg:pl-[5%] relative"
                 >
                     NEWSLETTER
                 </h1>
                 <p
                     data-scroll
                     data-scroll-speed="1"
-                    className="relative text-left w-[36%] pl-[5%] mt-[2%] text-[1.1rem] leading-[2]"
+                    className="relative lg:text-left w-[90%] sm:w-[60%] lg:w-[36%] self-center lg:self-start lg:pl-[5%] mt-[80%]  md:mt-[70%] lg:mt-[2%] text-[0.8rem] lg:text-[1.1rem] lg:leading-[2]"
                 >
                     Subscribe to our newsletter for updates on new blends,
                     special offers, brewing tips, and more. Get the latest
@@ -40,17 +40,23 @@ function Newsletter() {
                 <div
                     data-scroll
                     data-scroll-speed="1"
-                    className="ml-[58%] mt-[12%] flex flex-row w-[80%]"
+                    className=" xl:ml-[58%]   mt-[5%] lg:mt-[50%] xl:mt-[12%] flex flex-row justify-center w-[90%] sm:w-[100%] xl:w-[80%]"
                 >
                     <Input
                         className="pl-[5%] relative "
                         defaultValue="Enter Your Email Here"
                         inputProps={ariaLabel}
                         sx={{
-                            fontSize: '1.5rem',
+                            fontSize: {
+                                sx: '0.9rem',
+                                lg: '1.5rem'
+                            },
                             position: 'relative',
                             color: 'white',
-                            width: '35%',
+                            width: {
+                                sx: '100%',
+                                lg: '35%'
+                            },
                             '& input': {
                                 color: 'white'
                             },

@@ -174,7 +174,7 @@ function SigninComponent() {
     };
 
     return (
-        <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex">
+        <section className="w-[50vw] bg-[#232628] h-[80vh] rounded-xl opacity-80 flex mt-5">
             <div className="signup-page w-[50%] flex flex-col justify-center">
                 <h1 className="text-2xl pt-5 pb-15">Sign in</h1>
                 <form onSubmit={handleSubmit}>

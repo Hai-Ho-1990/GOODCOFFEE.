@@ -47,10 +47,12 @@ function ProductHeader({
                     data-scroll-speed="3"
                 >
                     <div>
-                        <h1 className=" text-[9rem] text-[#d4a010] font-extrabold leading-25 w-[100%]">
+                        <h1 className="text-[3rem] sm:text-[5rem] lg:text-[9rem] text-[#d4a010] font-extrabold lg:leading-25 w-[100%]">
                             SUMMER 2025
                         </h1>
-                        <h4 className="text-[2rem] font-extrabold">SHOP NOW</h4>
+                        <h4 className="sm:text-[1.5rem] lg:text-[2rem] font-extrabold">
+                            SHOP NOW
+                        </h4>
                     </div>
                 </div>
             </section>
