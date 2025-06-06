@@ -1,4 +1,0 @@
-LoginComponent.tsx : Ändra lokalt addressen till Render.
-SigninComponent : Ändra lokalt addressen till Render.
-ProfileComponent : Ändra lokalt addressen till Render.( 2 länk)
-.env : Ändra länk ????
