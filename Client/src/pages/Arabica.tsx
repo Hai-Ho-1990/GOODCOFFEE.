@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import { Product } from '../types/Product';
 import Footer from '../components/Footer';
 import { MaskedTextAnimation } from '../animations/MaskedTextAnimation';
-import SplitTextSection from '../animations/SplittextsEffect';
+import SplitTextSection from '../animations/SplitTextEffect';
 
 gsap.registerPlugin(ScrollTrigger);
 
