@@ -2,7 +2,7 @@ import Rating from '@mui/material/Rating';
 function RecensionComponent() {
     return (
         <>
-            <section data-scroll-section className="h-[100vh] w-[100vw]">
+            <section className="h-[100vh] w-[100vw]">
                 <h1 className="text-amber-400 text-left ml-[5vw] pt-[7vh]">
                     . WHAT CUSTOMERS THINK
                 </h1>

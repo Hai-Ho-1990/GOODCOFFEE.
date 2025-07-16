@@ -49,10 +49,7 @@ function ProductDetail({
     return (
         <>
             {product && (
-                <section
-                    data-scroll-section
-                    className="w-[100vw] h-[100vh] flex flex-col "
-                >
+                <section className="w-[100vw] h-[100vh] flex flex-col ">
                     <div className="hidden md:block">
                         <Navbar
                             cartCount={cartCount}

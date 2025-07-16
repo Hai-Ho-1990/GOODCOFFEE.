@@ -9,14 +9,15 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 const Login = lazy(() => import('./pages/Login'));
 const Signin = lazy(() => import('./pages/Signin'));
-import Logo from './components/Logo';
-const Profile = lazy(() => import('./pages/Profile'));
 
-import SmoothScrollWrapper from './components/SmoothScrollWrapper';
+const Profile = lazy(() => import('./pages/Profile'));
+import Arabica from './pages/Arabica';
+
 import ProductDetail from './components/products/ProductDetail';
 import { Product } from '../src/types/Product';
 import AdminDashboardLayout from './pages/admin/DashboardLayout';
 import { AuthProvider } from './context/AuthContext';
+import LenisProvider from './LenisProvider';
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -77,110 +78,115 @@ function App() {
 
     return (
         <>
-            {
-                <AuthProvider>
-                    <SmoothScrollWrapper>
-                        <Routes>
-                            <Route
-                                path="/admin"
-                                element={<AdminDashboardLayout />}
-                            />
-                            <Route
-                                path="/"
-                                element={
-                                    <>
-                                        <Suspense
-                                            fallback={
-                                                <div
-                                                    style={{
-                                                        padding: '2rem',
-                                                        textAlign: 'center'
-                                                    }}
-                                                >
-                                                    Loading...
-                                                </div>
-                                            }
+            <LenisProvider />
+            <AuthProvider>
+                <Routes>
+                    <Route path="/admin" element={<AdminDashboardLayout />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Suspense
+                                    fallback={
+                                        <div
+                                            style={{
+                                                padding: '2rem',
+                                                textAlign: 'center'
+                                            }}
                                         >
-                                            <Home
-                                                cartCount={cartCount}
-                                                cartItems={cartItems}
-                                                onRemoveItem={handleRemoveItem}
-                                                setCartCount={setCartCount}
-                                                setCartItems={setCartItems}
-                                            />
-                                        </Suspense>
-                                        <Logo />
-                                    </>
-                                }
-                            />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route
-                                path="/products"
-                                element={
-                                    <Products
+                                            Loading...
+                                        </div>
+                                    }
+                                >
+                                    <Home
                                         cartCount={cartCount}
                                         cartItems={cartItems}
                                         onRemoveItem={handleRemoveItem}
                                         setCartCount={setCartCount}
                                         setCartItems={setCartItems}
                                     />
-                                }
+                                </Suspense>
+                            </>
+                        }
+                    />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route
+                        path="/products"
+                        element={
+                            <Products
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
                             />
-                            <Route
-                                path="/login"
-                                element={
-                                    <Login
-                                        cartCount={cartCount}
-                                        cartItems={cartItems}
-                                        onRemoveItem={handleRemoveItem}
-                                        setCartCount={setCartCount}
-                                        setCartItems={setCartItems}
-                                    />
-                                }
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <Login
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
                             />
-                            <Route
-                                path="/signin"
-                                element={
-                                    <Signin
-                                        cartCount={cartCount}
-                                        cartItems={cartItems}
-                                        onRemoveItem={handleRemoveItem}
-                                        setCartCount={setCartCount}
-                                        setCartItems={setCartItems}
-                                    />
-                                }
+                        }
+                    />
+                    <Route
+                        path="/signin"
+                        element={
+                            <Signin
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
                             />
-                            <Route
-                                path="/profile"
-                                element={
-                                    <Profile
-                                        cartCount={cartCount}
-                                        cartItems={cartItems}
-                                        onRemoveItem={handleRemoveItem}
-                                        setCartCount={setCartCount}
-                                        setCartItems={setCartItems}
-                                    />
-                                }
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <Profile
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
                             />
+                        }
+                    />
 
-                            <Route
-                                path="/products/:id"
-                                element={
-                                    <ProductDetail
-                                        onAddToCart={handleAddToCart}
-                                        cartCount={cartCount}
-                                        cartItems={cartItems}
-                                        onRemoveItem={handleRemoveItem}
-                                        setCartCount={setCartCount}
-                                        setCartItems={setCartItems}
-                                    />
-                                }
+                    <Route
+                        path="/products/:id"
+                        element={
+                            <ProductDetail
+                                onAddToCart={handleAddToCart}
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
                             />
-                        </Routes>
-                    </SmoothScrollWrapper>
-                </AuthProvider>
-            }
+                        }
+                    />
+                    <Route
+                        path="/arabica"
+                        element={
+                            <Arabica
+                                cartCount={cartCount}
+                                cartItems={cartItems}
+                                onRemoveItem={handleRemoveItem}
+                                setCartCount={setCartCount}
+                                setCartItems={setCartItems}
+                            />
+                        }
+                    />
+                </Routes>
+            </AuthProvider>
         </>
     );
 }

@@ -2,6 +2,8 @@ import Navbar from '../Navbar';
 import HeroProduct from './HeroProduct';
 import { Product } from '../../types/Product';
 import DropdownMenuComponent from '../../components/DropdownMenuComponent';
+import { useScrollTriggerH1 } from '../../animations/ScrollTriggerH1';
+import { useRef } from 'react';
 
 interface ProductHeaderProps {
     cartCount: number;
@@ -17,9 +19,11 @@ function ProductHeader({
     setCartCount,
     setCartItems
 }: ProductHeaderProps) {
+    const heroRef = useRef<HTMLHeadingElement>(null);
+    useScrollTriggerH1(heroRef);
     return (
         <>
-            <section data-scroll-section className="h-[100vh] w-[100vw]">
+            <section className="h-[100vh] w-[100vw]">
                 <div className="hidden md:block">
                     <Navbar
                         cartCount={cartCount}
@@ -41,10 +45,8 @@ function ProductHeader({
 
                 <HeroProduct />
                 <div
-                    // ref={heroRef}
+                    ref={heroRef}
                     className="overflow-hidden absolute top-0 left-0 w-full h-[100vh] flex items-center justify-center "
-                    data-scroll
-                    data-scroll-speed="3"
                 >
                     <div>
                         <h1 className="text-[3rem] sm:text-[5rem] lg:text-[9rem] text-[#d4a010] font-extrabold lg:leading-25 w-[100%]">

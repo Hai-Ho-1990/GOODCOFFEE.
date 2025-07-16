@@ -19,10 +19,7 @@ export default function Login({
     setCartItems
 }: loginProps) {
     return (
-        <section
-            data-scroll-section
-            className="h-full w-[100vw] flex flex-col  "
-        >
+        <section className="h-full w-[100vw] flex flex-col  ">
             <div className="hidden md:block">
                 <Navbar
                     cartCount={cartCount}

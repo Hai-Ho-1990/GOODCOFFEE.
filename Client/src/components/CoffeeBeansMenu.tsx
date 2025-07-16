@@ -49,7 +49,7 @@ function CoffeeBeansMenu() {
     }, [isHovered]);
 
     return (
-        <section data-scroll-section className="min-h-screen bg-[black]">
+        <section className="min-h-screen bg-[black]">
             <h1 className="text-amber-400 text-left ml-[5vw] pt-[7vh]">
                 . OUR COFFEE BEANS
             </h1>

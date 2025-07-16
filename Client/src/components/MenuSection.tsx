@@ -1,10 +1,7 @@
 function FindUs() {
     return (
         <>
-            <section
-                data-scroll-section
-                className=" h-[100vh] flex flex-col xl:flex-row xl:justify-between mt-[100px]"
-            >
+            <section className=" h-[100vh] flex flex-col xl:flex-row xl:justify-between mt-[100px]">
                 <div className="w-[100%]  xl:w-[50%] xl:h-[100vh] flex flex-col xl:flex-row xl:flex-wrap lg:gap-2 ">
                     <a
                         href=""

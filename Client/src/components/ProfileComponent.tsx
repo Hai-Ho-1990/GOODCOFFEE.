@@ -78,10 +78,7 @@ function ProfileComponent({
     };
 
     return (
-        <section
-            data-scroll-section
-            className="h-[100vh] w-[100vw] flex flex-col "
-        >
+        <section className="h-[100vh] w-[100vw] flex flex-col ">
             <div className="hidden md:block">
                 <Navbar
                     cartCount={cartCount}

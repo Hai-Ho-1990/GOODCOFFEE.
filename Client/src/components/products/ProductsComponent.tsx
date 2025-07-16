@@ -153,10 +153,7 @@ function ProductsComponent() {
 
     return (
         <>
-            <section
-                data-scroll-section
-                className="bg-[#c4a88b] h-[100vh] w-[100vw]"
-            >
+            <section className="bg-[#c4a88b] h-[100vh] w-[100vw]">
                 <div className="products">
                     <div className="flex flex-col lg:flex-row justify-between pt-[2.2rem] lg:pt-[3vw]">
                         <h1 className="text-[black] text-left ml-[5vw] ">

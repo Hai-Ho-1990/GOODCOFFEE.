@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 function Footer() {
     return (
-        <footer data-scroll-section className="h-[100vh] w-full">
+        <footer className="h-[100vh] w-full">
             <h1 className="logo text-[2.5rem] sm:text-[5rem] lg:text-[7rem] font-extrabold text-[#d4a010] z-1 pt-[4rem] text-left pl-[5%]">
                 GOODCOFFEE.
             </h1>

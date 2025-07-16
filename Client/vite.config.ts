@@ -10,14 +10,14 @@ export default defineConfig({
         }
     },
     build: {
-        chunkSizeWarningLimit: 700, // ökar maxgränsen för varningar
+        chunkSizeWarningLimit: 700,
         rollupOptions: {
             output: {
                 manualChunks: {
                     react: ['react', 'react-dom'],
                     mui: ['@mui/material', '@emotion/react', '@emotion/styled'],
                     router: ['react-router-dom'],
-                    vendor: ['axios', 'locomotive-scroll']
+                    vendor: ['axios', 'lenis'] // här bytte jag ut locomotive-scroll mot lenis
                 }
             }
         }

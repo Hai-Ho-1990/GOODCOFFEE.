@@ -25,7 +25,7 @@ export default function Navbar({
     const { isLoggedIn, isAdmin } = useAuth();
 
     return (
-        <div className="container-navbar flex items-center justify-around w-[100%] pt-4 ">
+        <div className="container-navbar flex items-center justify-around w-[100vw] pt-4 ">
             <Logo />
             <nav className="navbar-links flex gap-15 text-lg z-10">
                 <Link to="/">Home</Link>

@@ -1,0 +1,12 @@
+Mask Reveal / Masked Text Animation (tex: Arabica.tsx)
+    1. Du skapar en "mask"
+    → Genom att wrappa texten i ett element med overflow: hidden.
+
+    2. Texten ligger utanför masken från början
+    → Genom att sätta transform: translateY(115px) så är texten 115px nedanför sitt normala läge – alltså utanför det synliga området.
+
+    3. Du animerar texten uppåt (till y: 0)
+    → Med t.ex. GSAP to(..., { y: 0 }), så flyttas texten upp och blir synlig gradvis genom masken.
+
+    4. Resultatet blir en "reveal"
+    → Det ser ut som att texten kommer in från ingenstans, genom en smal springa eller mask.

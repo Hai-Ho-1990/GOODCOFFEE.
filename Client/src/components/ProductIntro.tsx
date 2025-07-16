@@ -7,10 +7,7 @@ import {
 
 function ProductIntro() {
     return (
-        <section
-            data-scroll-section
-            className="bg-[#D0BEAA] min-h-screen xl:flex justify-between"
-        >
+        <section className="bg-[#D0BEAA] min-h-screen xl:flex justify-between">
             <div className="sm:w-[100%] xl:w-[50%] relative bottom-[8%] md:h-[50vh]">
                 <h1 className="text-[black] text-left ml-[5vw] pt-[5vw]">
                     . WHO WE ARE

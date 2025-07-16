@@ -23,10 +23,13 @@ html,
 #root {
     margin: 0;
     padding: 0;
-    display: flex;
-    place-items: center;
-    width: 100vw;
-    overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: auto; /* Lenis sköter smooth scroll */
+    overflow-x: hidden; /* förhindra sidscroll */
+}
+body {
+    position: static;
 }
 
 .sale-banner h1 {
@@ -36,4 +39,9 @@ html,
     -webkit-background-clip: text;
 
     -webkit-text-fill-color: transparent;
+}
+
+.arabica {
+    transform: translateY(315px);
+    transition: transform 0.9s;
 }
