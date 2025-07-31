@@ -2,7 +2,7 @@ import Navbar from '../Navbar';
 import HeroProduct from './HeroProduct';
 import { Product } from '../../types/Product';
 import DropdownMenuComponent from '../../components/DropdownMenuComponent';
-import { useScrollTriggerH1 } from '../../animations/ScrollTriggerH1';
+import { useScrollTriggerFade } from '../../animations/ScrollTriggerFade';
 import { useRef } from 'react';
 
 interface ProductHeaderProps {
@@ -20,7 +20,7 @@ function ProductHeader({
     setCartItems
 }: ProductHeaderProps) {
     const heroRef = useRef<HTMLHeadingElement>(null);
-    useScrollTriggerH1(heroRef);
+    useScrollTriggerFade('.scrollFade');
     return (
         <>
             <section className="h-[100vh] w-[100vw]">

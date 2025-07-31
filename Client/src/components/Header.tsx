@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { useScrollTriggerH1 } from '../animations/ScrollTriggerH1';
+import { useParallaxScroll } from '../animations/ParallaxScroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,9 +25,9 @@ function Header({
     setCartCount,
     setCartItems
 }: headerProps) {
-    const titleRef = useRef<HTMLHeadingElement>(null);
+    const parallaxRef = useRef<HTMLHeadingElement>(null);
 
-    useScrollTriggerH1(titleRef);
+    useParallaxScroll(parallaxRef); // förutsatt att du har en funktion som accepterar useRef
 
     return (
         <>
@@ -53,7 +53,7 @@ function Header({
                 <Hero />
                 <div className="overflow-hidden absolute top-0 left-0 w-full h-[100vh] flex items-center justify-center ">
                     <h1
-                        ref={titleRef}
+                        ref={parallaxRef}
                         className=" text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] text-[#d4a010] font-extrabold md:leading-22 lg:leading-25 w-[55%] "
                     >
                         PREMIUM COFFEE ROASTING. BASED IN STOCKHOLM

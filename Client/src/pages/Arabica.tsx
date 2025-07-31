@@ -1,11 +1,11 @@
-import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '../components/Navbar';
 import { Product } from '../types/Product';
 import Footer from '../components/Footer';
-import { MaskedTextAnimation } from '../animations/MaskedTextAnimation';
-import SplitTextSection from '../animations/SplitTextEffect';
+import { useMaskedTextAnimation } from '../animations/MaskedTextAnimation';
+import { useScrollTriggerFade } from '../animations/ScrollTriggerFade';
+import useSplitTextAnimation from '../animations/SplitTextEffect';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,11 +24,10 @@ function Arabica({
     setCartCount,
     setCartItems
 }: ArabicaProps) {
-    const titleRef = useRef<HTMLHeadingElement | null>(null);
-    MaskedTextAnimation(titleRef);
+    useMaskedTextAnimation('.maskedText');
+    useScrollTriggerFade('.scrollFade');
 
-    const textRef = useRef<HTMLParagraphElement | null>(null);
-    SplitTextSection(textRef);
+    useSplitTextAnimation();
 
     return (
         <>
@@ -40,21 +39,24 @@ function Arabica({
                     setCartCount={setCartCount}
                     setCartItems={setCartItems}
                 />
-
-                <div className="overflow-hidden h-[17rem] mt-5">
-                    <h1
-                        ref={titleRef}
-                        className="arabica text-[3rem] sm:text-[5rem] lg:text-[9rem] xl:text-[14rem] text-[#d4a010] font-extrabold"
-                    >
+                <div className=" leading-30 mt-[10rem]">
+                    <h1 className="scrollFade text-[3rem] sm:text-[5rem] lg:text-[9rem] xl:text-[14rem] text-[#d4a010] font-extrabold">
                         ARABICA
                     </h1>
+                    <h4 className="scrollFade text-[2rem]  text-[white] font-bold">
+                        good coffee enhance smart decision
+                    </h4>
+                </div>
+                <div className="scrollFade flex justify-center">
+                    <img
+                        src="../public/arabica-nobg.png"
+                        alt=""
+                        className="w-[80%] sm:w-[100%] xl:w-[50%] h-[50%] object-cover scale-[1.2]"
+                    />
                 </div>
             </section>
-            <section className=" h-[100vh] flex flex-col justify-center">
-                <p
-                    className="splitTexts w-[80%] self-center text-[2rem] "
-                    ref={textRef}
-                >
+            <section className="scrollFade h-[100vh] flex flex-col justify-center">
+                <p className=" w-[60%] self-center text-[1.5rem] ">
                     Arabica, or Coffea arabica, is the most well-known and
                     appreciated coffee variety in the world. Around 60–70% of
                     all coffee produced globally comes from Arabica beans, and
@@ -64,7 +66,10 @@ function Arabica({
                 </p>
             </section>
             <section className="h-[100vh] flex flex-col justify-center bg-[#d0bea9]">
-                <p className="splitTexts w-[80%] self-center text-[2rem] text-black">
+                <h1 className="scrollFade w-[80%] self-center text-[2.5rem] text-black uppercase pb-[5rem] font-bold">
+                    The origins of Arabica coffee
+                </h1>
+                <p className="scrollFade w-[80%] self-center text-[1.5rem] text-black">
                     The origins of Arabica coffee trace back to the highlands of
                     Ethiopia, where legend tells of a goat herder who noticed
                     his goats becoming especially energetic after eating berries
@@ -77,18 +82,21 @@ function Arabica({
             </section>
 
             <section className=" h-[100vh] flex flex-col justify-center">
-                <p className="splitTexts w-[80%] self-center text-[2rem]">
-                    What sets Arabica apart is its mild, well-balanced flavor
-                    profile, with notes of sweetness, acidity, and often fruity
-                    or floral tones. Unlike the Robusta bean (the other major
-                    coffee variety), Arabica contains less bitterness and
-                    significantly lower caffeine content – usually around
-                    1–1.5%. This makes Arabica a smoother and more drinkable
-                    coffee, with a rounder, more refined taste.
-                </p>
+                <video
+                    className=" top-0 left-0 w-full h-[100vh] object-cover opacity-85 "
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                >
+                    <source src="./video/209419_tiny.mp4" type="video/mp4" />
+                </video>
             </section>
-            <section className="h-[100vh] flex flex-col justify-center bg-[#d0bea9]">
-                <p className="splitTexts w-[80%] self-center text-[2rem] text-black">
+            <section className="h-[100vh] flex flex-col justify-center ">
+                <h1 className="scrollFade w-[80%] self-center text-[2.5rem] text-white uppercase pb-[5rem] font-bold">
+                    The flavor profile
+                </h1>
+                <p className="scrollFade w-[70%] self-center text-[1.5rem] text-white">
                     The flavor profile can vary depending on origin and roast,
                     but common notes include chocolate, berries, caramel,
                     citrus, or jasmine. That’s why Arabica is especially popular

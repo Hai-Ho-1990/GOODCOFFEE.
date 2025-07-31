@@ -1,20 +1,22 @@
+// hooks/useParallaxScroll.ts
 import { RefObject, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useScrollTriggerH1 = (ref: RefObject<HTMLElement | null>) => {
+/**
+ * Custom hook som animerar ett enskilt element med parallax + fade-in.
+ */
+export const useParallaxScroll = (ref: RefObject<HTMLElement | null>) => {
     useEffect(() => {
         if (!ref.current) return;
 
         const ctx = gsap.context(() => {
+            // Fade-in
             gsap.fromTo(
                 ref.current,
-                {
-                    y: 100,
-                    opacity: 0
-                },
+                { y: 100, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
@@ -24,29 +26,29 @@ export const useScrollTriggerH1 = (ref: RefObject<HTMLElement | null>) => {
                         trigger: ref.current,
                         start: 'top 80%',
                         toggleActions: 'play none none reverse'
-                        // markers: true // ← Avkommentera för att debugga
+                        // markers: true
                     }
                 }
             );
-            //parallax scroll
+
+            // Parallax scroll
             gsap.fromTo(
                 ref.current,
+                { y: 100 },
                 {
-                    y: 100 // Startposition (lite längre ner)
-                },
-                {
-                    y: -100, // Slutposition (lite längre upp)
-                    ease: 'none', // Inga "easing" effekter för parallax
+                    y: -100,
+                    ease: 'none',
                     scrollTrigger: {
                         trigger: ref.current,
-                        start: 'top bottom', // När toppen av <h1> når botten av viewport
-                        end: 'bottom top', // När botten av <h1> når toppen av viewport
-                        scrub: true // Scrollen styr animationen
-                        // markers: true // Använd för debugging
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                        // markers: true
                     }
                 }
             );
         }, ref);
-        return () => ctx.revert();
+
+        return () => ctx.revert(); // Rensa GSAP context vid unmount
     }, [ref]);
 };

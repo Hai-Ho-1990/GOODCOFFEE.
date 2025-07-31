@@ -10,3 +10,15 @@ Mask Reveal / Masked Text Animation (tex: Arabica.tsx)
 
     4. Resultatet blir en "reveal"
     → Det ser ut som att texten kommer in från ingenstans, genom en smal springa eller mask.
+
+Split Text Animation (applicera tex. Arabica.tsx)
+
+    1. Importera viktiga packet bland annat useEffect, SplitType, gsap och ScrollTrigger.
+
+    2. Registrerar ScrollTrigger så GSAP vet om att det används.
+
+    3. Bestäm ett CSS-selektor-namn, standard är '.splitTexts' så att kunna applicera animation till denna klass.
+
+    4. Loopar igenom varje element och skapar en animation.
+
+    5. Sätter startposition för varje ord: osynliga och flyttade neråt.
