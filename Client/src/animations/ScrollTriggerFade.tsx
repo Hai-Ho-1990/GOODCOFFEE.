@@ -22,12 +22,12 @@ export const useScrollTriggerFade = (selector: string = '.scrollFade') => {
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1.5,
+                    duration: 1,
                     ease: 'power4.out',
-                    delay: index * 0.3, // 👈 Sekventiell fördröjning (justera 0.2 vid behov)
+                    delay: index * 0.1, // 👈 Sekventiell fördröjning (justera 0.2 vid behov)
                     scrollTrigger: {
                         trigger: el,
-                        start: 'top 60%',
+                        start: 'top 80%',
                         toggleActions: 'play none none reverse',
                         markers: true,
                         onToggle: (st) => triggers.push(st)
