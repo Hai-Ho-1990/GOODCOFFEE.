@@ -22,3 +22,15 @@ Split Text Animation (applicera tex. Arabica.tsx)
     4. Loopar igenom varje element och skapar en animation.
 
     5. Sätter startposition för varje ord: osynliga och flyttade neråt.
+
+Hover Effekt kombinerar med ScrollTrigger (Arabica.tsx)
+
+   Hover-effekten krånglar med ScrollTrigger-effekterna, så i stället för att ha scrolleffekter direkt på HTML-taggen lägger vi dem i en överordnad div och placerar hover-effekten direkt på HTML-taggen."
+
+Lenis Darkroom
+
+    Syftet med Lenis är just att göra webbscrollning mjukare och mer kontrollerad än den inbyggda scrollningen i webbläsaren.
+
+GSAP
+
+    GSAP ScrollTrigger – för att trigga och synka animationer på scroll.

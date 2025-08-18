@@ -31,7 +31,7 @@ function Header({
 
     return (
         <>
-            <section className="h-[100vh] w-[100vw]">
+            <section className=" h-[100vh] w-[100vw]">
                 <div className="hidden md:block">
                     <Navbar
                         cartCount={cartCount}
